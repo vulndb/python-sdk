@@ -112,21 +112,21 @@ class DBVuln(object):
         # There are a couple of things I don't do here, and are on purpose:
         #   - I want to fail if the file doesn't exist
         #   - I want to fail if the file doesn't contain valid JSON
-        raw_data = json.loads(file(db_file).read())
+        raw = json.loads(file(db_file).read())
 
         # Here I don't do any error handling either, I expect the JSON files to
         # be valid
         data = {
-            '_id': raw_data['id'],
-            'title': raw_data['title'],
-            'description': DBVuln.handle_multiline_field(raw_data['description']),
-            'severity': raw_data['severity'],
-            'wasc': raw_data.get('wasc', []),
-            'tags': raw_data.get('tags', []),
-            'cwe': raw_data.get('cwe', []),
-            'owasp_top_10': raw_data.get('owasp_top_10', {}),
-            'fix': raw_data['fix'],
-            'references': DBVuln.handle_references(raw_data.get('references', [])),
+            '_id': raw['id'],
+            'title': raw['title'],
+            'description': DBVuln.handle_multiline_field(raw['description']),
+            'severity': raw['severity'],
+            'wasc': raw.get('wasc', []),
+            'tags': raw.get('tags', []),
+            'cwe': raw.get('cwe', []),
+            'owasp_top_10': raw.get('owasp_top_10', {}),
+            'fix': raw['fix'],
+            'references': DBVuln.handle_references(raw.get('references', [])),
         }
 
         return data
@@ -185,8 +185,8 @@ class DBVuln(object):
         data:
 
           "references": [
-              {"url": "http://foo.com/xss", "title": "First reference to XSS vulnerability"},
-              {"url": "http://asp.net/xss", "title": "How to fix XSS vulns in ASP.NET"},
+              {"url": "http://foo.com/xss", "title": "First reference to ..."},
+              {"url": "http://asp.net/xss", "title": "How to fix ..."},
               {"url": "http://owasp.org/xss", "title": "OWASP desc for XSS"}
             ]
 
@@ -216,16 +216,16 @@ class DBVuln(object):
                                                               self.id)
 
     def __eq__(self, other):
-        return self.id == other.id and \
-               self.title == other.title and \
-               self.description == other.description and \
-               self.severity == other.severity and \
-               self.wasc == other.wasc and \
-               self.tags == other.tags and \
-               self.cwe == other.cwe and \
-               self.owasp_top_10 == other.owasp_top_10 and \
-               self.fix == other.fix and \
-               self.references == other.references
+        return (self.id == other.id and
+                self.title == other.title and
+                self.description == other.description and
+                self.severity == other.severity and
+                self.wasc == other.wasc and
+                self.tags == other.tags and
+                self.cwe == other.cwe and
+                self.owasp_top_10 == other.owasp_top_10 and
+                self.fix == other.fix and
+                self.references == other.references)
 
 
 class Reference(object):
