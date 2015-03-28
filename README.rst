@@ -1,6 +1,4 @@
-Python SDK to access the `vulnerability database <https://github.com/vulndb/data)>`_
-
-Build status:
+Python SDK to access the `vulnerability database <https://github.com/vulndb/data>`_
 
 .. image:: https://circleci.com/gh/vulndb/python-sdk/tree/master.svg?style=svg
    :alt: Build Status
@@ -37,7 +35,7 @@ More methods and helpers available in the source code.
 
 Contributing
 ============
-Send your `pull requests <https://help.github.com/articles/using-pull-requests/`_
+Send your `pull requests <https://help.github.com/articles/using-pull-requests/>`_
 with improvements and bug fixes, making sure that all tests ``PASS``:
 
 ::
