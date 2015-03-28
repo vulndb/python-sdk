@@ -8,7 +8,7 @@ setup(
     name='vulndb',
 
     version='0.0.1',
-    license='3 clause BSD',
+    license='BSD 3-clause',
     platforms='Linux',
 
     description='Provides access to the vulndb information',
@@ -22,10 +22,14 @@ setup(
     include_package_data=True,
 
     install_requires=[],
+
+    # With setuptools_git we make sure that the contents of vulndb/db/ , which
+    # are non source code files, get copied too
+    setup_requires=['setuptools_git >= 1.1'],
     zip_safe=False,
 
     # https://pypi.python.org/pypi?%3Aaction=list_classifiers
-    classifiers = [
+    classifiers=[
         'Development Status :: 5 - Production/Stable',
         'Intended Audience :: Developers',
         'License :: OSI Approved :: BSD License',
