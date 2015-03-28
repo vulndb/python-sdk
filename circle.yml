@@ -5,7 +5,7 @@
 #
 dependencies:
   pre:
-    - pip install vulndb/requirements-dev.txt
+    - pip install -r vulndb/requirements-dev.txt
 
   post:
     - pip --version
