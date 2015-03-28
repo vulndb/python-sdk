@@ -53,61 +53,12 @@ class DBVuln(object):
         data = DBVuln.load_from_json(db_file)
         return cls(**data)
 
-    @staticmethod
-    def get_file_for_id(_id):
-        """
-        Given _id, search the DB for the file which contains the data
-        :param _id: The id to search (int)
-        :return: The filename
-        """
-        file_start = '%s-' % _id
-
-        for _file in os.listdir(DBVuln.DB_PATH):
-            if _file.startswith(file_start):
-                return os.path.join(DBVuln.DB_PATH, _file)
-
-        raise NotFoundException('No data for ID %s' % _id)
-
-    @staticmethod
-    def is_valid_id(_id):
-        try:
-            DBVuln.get_file_for_id(_id)
-        except NotFoundException:
-            return False
-        else:
-            return True
-
-    @staticmethod
-    def load_from_json(db_file):
-        """
-        Parses the JSON data and returns it
-
-        :param db_file: File and path pointing to the JSON file to parse
-        :raises: All kind of exceptions if the file doesn't exist or JSON is
-                 invalid.
-        :return: None
-        """
-        # There are a couple of things I don't do here, and are on purpose:
-        #   - I want to fail if the file doesn't exist
-        #   - I want to fail if the file doesn't contain valid JSON
-        raw_data = json.loads(file(db_file).read())
-
-        # Here I don't do any error handling either, I expect the JSON files to
-        # be valid
-        data = {
-            '_id': raw_data['id'],
-            'title': raw_data['title'],
-            'description': DBVuln.handle_multiline_field(raw_data['description']),
-            'severity': raw_data['severity'],
-            'wasc': raw_data.get('wasc', None),
-            'tags': raw_data.get('tags', None),
-            'cwe': raw_data.get('cwe', None),
-            'owasp_top_10': raw_data.get('owasp_top_10', None),
-            'fix': raw_data['fix'],
-            'references': DBVuln.handle_references(raw_data.get('references', [])),
-        }
-
-        return data
+    def get_owasp_top_10_references(self):
+        for owasp_version in self.owasp_top_10:
+            for risk_id in self.owasp_top_10[owasp_version]:
+                ref = self.get_owasp_top_10_url(owasp_version, risk_id)
+                if ref is not None:
+                    yield owasp_version, risk_id, ref
 
     @property
     def fix_guidance(self):
@@ -133,7 +84,55 @@ class DBVuln(object):
         """
         return self.fix['effort']
 
-    def get_wasc_url(self, wasc_id):
+    @staticmethod
+    def get_file_for_id(_id):
+        """
+        Given _id, search the DB for the file which contains the data
+        :param _id: The id to search (int)
+        :return: The filename
+        """
+        file_start = '%s-' % _id
+
+        for _file in os.listdir(DBVuln.DB_PATH):
+            if _file.startswith(file_start):
+                return os.path.join(DBVuln.DB_PATH, _file)
+
+        raise NotFoundException('No data for ID %s' % _id)
+
+    @staticmethod
+    def load_from_json(db_file):
+        """
+        Parses the JSON data and returns it
+
+        :param db_file: File and path pointing to the JSON file to parse
+        :raises: All kind of exceptions if the file doesn't exist or JSON is
+                 invalid.
+        :return: None
+        """
+        # There are a couple of things I don't do here, and are on purpose:
+        #   - I want to fail if the file doesn't exist
+        #   - I want to fail if the file doesn't contain valid JSON
+        raw_data = json.loads(file(db_file).read())
+
+        # Here I don't do any error handling either, I expect the JSON files to
+        # be valid
+        data = {
+            '_id': raw_data['id'],
+            'title': raw_data['title'],
+            'description': DBVuln.handle_multiline_field(raw_data['description']),
+            'severity': raw_data['severity'],
+            'wasc': raw_data.get('wasc', []),
+            'tags': raw_data.get('tags', []),
+            'cwe': raw_data.get('cwe', []),
+            'owasp_top_10': raw_data.get('owasp_top_10', {}),
+            'fix': raw_data['fix'],
+            'references': DBVuln.handle_references(raw_data.get('references', [])),
+        }
+
+        return data
+
+    @staticmethod
+    def get_wasc_url(wasc_id):
         """
         :return: The URL associated with the wasc_id, usually the WASC ID is
                  received by the developer from self.wasc and he uses this
@@ -144,13 +143,15 @@ class DBVuln(object):
         if wasc_id in WASC_ID_TO_URL:
             return WASC_ID_TO_URL[wasc_id]
 
-    def get_cwe_url(self, cwe_id):
+    @staticmethod
+    def get_cwe_url(cwe_id):
         """
         Similar to get_wasc_url() but for CWE
         """
         return CWE_URL_FMT % cwe_id
 
-    def get_owasp_top_10_url(self, owasp_version, risk_id):
+    @staticmethod
+    def get_owasp_top_10_url(owasp_version, risk_id):
         """
         Similar to get_wasc_url() but for OWASP Top 10
         """
@@ -160,13 +161,6 @@ class DBVuln(object):
             return OWASP_TOP10_2010_URL_FMT % risk_id
         elif owasp_version == 2013:
             return OWASP_TOP10_2013_URL_FMT % risk_id
-
-    def get_owasp_top_10_references(self):
-        for owasp_version in self.owasp_top_10:
-            for risk_id in self.owasp_top_10[owasp_version]:
-                ref = self.get_owasp_top_10_url(owasp_version, risk_id)
-                if ref is not None:
-                    yield owasp_version, risk_id, ref
 
     @staticmethod
     def handle_multiline_field(field_data):
@@ -204,6 +198,15 @@ class DBVuln(object):
                                             reference_dict['title']))
 
         return reference_list
+
+    @staticmethod
+    def is_valid_id(_id):
+        try:
+            DBVuln.get_file_for_id(_id)
+        except NotFoundException:
+            return False
+        else:
+            return True
 
     def __str__(self):
         return 'DBVulnerability for %s - %s' % (self.title, self.id)
