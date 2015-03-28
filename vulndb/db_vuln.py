@@ -100,7 +100,7 @@ class DBVuln(object):
             'description': DBVuln.handle_multiline_field(raw_data['description']),
             'severity': raw_data['severity'],
             'wasc': raw_data.get('wasc', None),
-            'tags': raw_data['tags'],
+            'tags': raw_data.get('tags', None),
             'cwe': raw_data.get('cwe', None),
             'owasp_top_10': raw_data.get('owasp_top_10', None),
             'fix': raw_data['fix'],
