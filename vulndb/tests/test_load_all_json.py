@@ -7,11 +7,19 @@ from vulndb.db_vuln import Reference
 
 
 class TestLoadAllJSON(unittest.TestCase):
+
+    maxDiff = None
+
     def test_from_file(self):
+        failed_json_files = []
+
         for _fname in os.listdir(DBVuln.DB_PATH):
             _file_path = os.path.join(DBVuln.DB_PATH, _fname)
-
-            dbv = DBVuln.from_file(_file_path)
+            try:
+                dbv = DBVuln.from_file(_file_path)
+            except:
+                failed_json_files.append(_fname)
+                continue
 
             self.assertIsInstance(dbv.title, basestring)
             self.assertIsInstance(dbv.description, basestring)
@@ -27,3 +35,5 @@ class TestLoadAllJSON(unittest.TestCase):
 
             for ref in dbv.references:
                 self.assertIsInstance(ref, Reference)
+
+        self.assertEqual(failed_json_files, [])
