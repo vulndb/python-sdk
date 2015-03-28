@@ -7,7 +7,7 @@ Python SDK to access the `vulnerability database <https://github.com/vulndb/data
 
 Installation
 ============
-It's possible to install the latest stable release from pypi:
+It's possible to install `the latest stable release from pypi <https://pypi.python.org/pypi/vulndb>`_:
 
 ::
 
