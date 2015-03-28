@@ -69,6 +69,15 @@ class DBVuln(object):
         raise NotFoundException('No data for ID %s' % _id)
 
     @staticmethod
+    def is_valid_id(_id):
+        try:
+            DBVuln.get_file_for_id(_id)
+        except NotFoundException:
+            return False
+        else:
+            return True
+
+    @staticmethod
     def load_from_json(db_file):
         """
         Parses the JSON data and returns it
@@ -152,6 +161,13 @@ class DBVuln(object):
         elif owasp_version == 2013:
             return OWASP_TOP10_2013_URL_FMT % risk_id
 
+    def get_owasp_top_10_references(self):
+        for owasp_version in self.owasp_top_10:
+            for risk_id in self.owasp_top_10[owasp_version]:
+                ref = self.get_owasp_top_10_url(owasp_version, risk_id)
+                if ref is not None:
+                    yield owasp_version, risk_id, ref
+
     @staticmethod
     def handle_multiline_field(field_data):
         """
@@ -166,7 +182,7 @@ class DBVuln(object):
         if isinstance(field_data, basestring):
             return field_data
 
-        return ''.join(field_data)
+        return '\n'.join(field_data)
 
     @staticmethod
     def handle_references(json_references):
