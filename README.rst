@@ -50,13 +50,18 @@ follow these steps:
 
 ::
 
+    # Update the database
     git clone https://github.com/vulndb/data.git
     cp -rf data/db/*.json vulndb/db/
-    git commit vulndb/db/ -m 'Updated vulnerability database'
-    bumpversion vulndb/version.txt --new-version 0.0.3
+
+    # Bump the version number
+    subl vulndb/version.txt
+
+    # Push to repo
+    git commit vulndb/db/ vulndb/version.txt -m 'Updated vulnerability database'
     git push
 
-After updating the database it's a good idea to publish the latest at pypi using:
+After updating the database it's a good idea to publish the latest at ``pypi`` using:
 
 ::
 
