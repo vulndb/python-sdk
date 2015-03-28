@@ -1,5 +1,7 @@
 Python SDK to access the [vulnerability database](https://github.com/vulndb/data)
 
+Build status: [![Circle CI](https://circleci.com/gh/vulndb/python-sdk/tree/master.svg?style=svg)](https://circleci.com/gh/vulndb/python-sdk/tree/master)
+
 ## Installation
 ```bash
 git clone https://github.com/vulndb/python-sdk.git
