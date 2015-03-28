@@ -7,7 +7,7 @@ from os.path import join, dirname
 setup(
     name='vulndb',
 
-    version='0.0.1',
+    version='0.0.2',
     license='BSD 3-clause',
     platforms='Linux',
 
