@@ -72,7 +72,8 @@ follow these steps:
     # Update the database
     git clone https://github.com/vulndb/data.git
     cp -rf data/db/*.json vulndb/db/
-
+    git add vulndb/db/
+    
     # Bump the version number
     subl vulndb/version.txt
 
