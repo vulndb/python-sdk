@@ -57,7 +57,8 @@ with improvements and bug fixes, making sure that all tests ``PASS``:
     OK
 
 
-Install the dev dependencies by running ``pip install -r vulndb/requirements-dev.txt``
+In order to run the test suite you'll have to install the dev dependencies by
+running ``pip install -r vulndb/requirements-dev.txt``
 
 Updating the database
 =====================
