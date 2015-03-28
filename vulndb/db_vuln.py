@@ -1,3 +1,4 @@
+import os
 import json
 
 from vulndb.constants.wasc import WASC_ID_TO_URL
@@ -13,30 +14,64 @@ class DBVuln(object):
     :see: https://github.com/vulndb/data/issues/5
     :see: https://github.com/vulndb/data
     """
-    def __init__(self, db_file=None):
-        """
-        Creates a new DBVuln, optionally provide the database file which will
-        be loaded to populate all the internal attributes.
+    DB_PATH = os.path.join(os.path.dirname(os.path.realpath(__file__)), 'db')
 
-        :param db_file: File and path pointing to the JSON file to parse
+    def __init__(self, _id=None, title=None, description=None, severity=None,
+                 wasc=None, tags=None, cwe=None, owasp_top_10=None, fix=None,
+                 references=None):
         """
-        self.id = None
-        self.title = None
-        self.description = None
-        self.severity = None
-        self.wasc = None
-        self.tags = None
-        self.cwe = None
-        self.owasp_top_10 = None
-        self.fix = None
-        self.references = None
-
-        if db_file:
-            self.load_from_json(db_file)
-
-    def load_from_json(self, db_file):
+        Creates a new DBVuln, setting the internal attributes to the provided
+        kwargs.
         """
-        Parses and loads the JSON data into the internal attributes
+        self.id = _id
+        self.title = title
+        self.description = description
+        self.severity = severity
+        self.wasc = wasc
+        self.tags = tags
+        self.cwe = cwe
+        self.owasp_top_10 = owasp_top_10
+        self.fix = fix
+        self.references = references
+
+    @classmethod
+    def from_file(cls, db_file):
+        """
+        This is an alternative "constructor" for the DBVuln class which loads
+        the data from a file.
+        """
+        data = DBVuln.load_from_json(db_file)
+        return cls(**data)
+
+    @classmethod
+    def from_id(cls, _id):
+        """
+        This is an alternative "constructor" for the DBVuln class which searches
+        the db directory to find the right file for the provided _id
+        """
+        db_file = DBVuln.get_file_for_id(_id)
+        data = DBVuln.load_from_json(db_file)
+        return cls(**data)
+
+    @staticmethod
+    def get_file_for_id(_id):
+        """
+        Given _id, search the DB for the file which contains the data
+        :param _id: The id to search (int)
+        :return: The filename
+        """
+        file_start = '%s-' % _id
+
+        for _file in os.listdir(DBVuln.DB_PATH):
+            if _file.startswith(file_start):
+                return os.path.join(DBVuln.DB_PATH, _file)
+
+        raise NotFoundException('No data for ID %s' % _id)
+
+    @staticmethod
+    def load_from_json(db_file):
+        """
+        Parses the JSON data and returns it
 
         :param db_file: File and path pointing to the JSON file to parse
         :raises: All kind of exceptions if the file doesn't exist or JSON is
@@ -46,20 +81,24 @@ class DBVuln(object):
         # There are a couple of things I don't do here, and are on purpose:
         #   - I want to fail if the file doesn't exist
         #   - I want to fail if the file doesn't contain valid JSON
-        data = json.loads(file(db_file).read())
+        raw_data = json.loads(file(db_file).read())
 
         # Here I don't do any error handling either, I expect the JSON files to
         # be valid
-        self.id = data['id']
-        self.title = data['title']
-        self.description = self.handle_multiline_field(data['description'])
-        self.severity = data['severity']
-        self.wasc = data['wasc']
-        self.tags = data['tags']
-        self.cwe = data['cwe']
-        self.owasp_top_10 = data['owasp_top_10']
-        self.fix = ['fix']
-        self.references = self.handle_references(data['references'])
+        data = {
+            '_id': raw_data['id'],
+            'title': raw_data['title'],
+            'description': DBVuln.handle_multiline_field(raw_data['description']),
+            'severity': raw_data['severity'],
+            'wasc': raw_data.get('wasc', None),
+            'tags': raw_data['tags'],
+            'cwe': raw_data.get('cwe', None),
+            'owasp_top_10': raw_data.get('owasp_top_10', None),
+            'fix': raw_data['fix'],
+            'references': DBVuln.handle_references(raw_data.get('references', [])),
+        }
+
+        return data
 
     @property
     def fix_guidance(self):
@@ -83,7 +122,7 @@ class DBVuln(object):
                     "effort": 50
                     },
         """
-        return self.handle_multiline_field(self.fix['effort'])
+        return self.fix['effort']
 
     def get_wasc_url(self, wasc_id):
         """
@@ -106,12 +145,15 @@ class DBVuln(object):
         """
         Similar to get_wasc_url() but for OWASP Top 10
         """
-        if owasp_version == '2010':
+        owasp_version = int(owasp_version)
+
+        if owasp_version == 2010:
             return OWASP_TOP10_2010_URL_FMT % risk_id
-        elif owasp_version == '2013':
+        elif owasp_version == 2013:
             return OWASP_TOP10_2013_URL_FMT % risk_id
 
-    def handle_multiline_field(self, field_data):
+    @staticmethod
+    def handle_multiline_field(field_data):
         """
         According to the spec there might be some fields which contain long
         descriptions, which might be strings or lists with strings. I translate
@@ -124,9 +166,10 @@ class DBVuln(object):
         if isinstance(field_data, basestring):
             return field_data
 
-        return '\n'.join(field_data)
+        return ''.join(field_data)
 
-    def handle_references(self, json_references):
+    @staticmethod
+    def handle_references(json_references):
         """
         Create a list of reference objects that represent this part of the JSON
         data:
@@ -146,8 +189,40 @@ class DBVuln(object):
 
         return reference_list
 
+    def __str__(self):
+        return 'DBVulnerability for %s - %s' % (self.title, self.id)
+
+    def __repr__(self):
+        return '<DBVulnerability (title: "%s" | id: %s) >' % (self.title,
+                                                              self.id)
+
+    def __eq__(self, other):
+        return self.id == other.id and \
+               self.title == other.title and \
+               self.description == other.description and \
+               self.severity == other.severity and \
+               self.wasc == other.wasc and \
+               self.tags == other.tags and \
+               self.cwe == other.cwe and \
+               self.owasp_top_10 == other.owasp_top_10 and \
+               self.fix == other.fix and \
+               self.references == other.references
+
 
 class Reference(object):
     def __init__(self, url, title):
         self.url = url
         self.title = title
+
+    def __str__(self):
+        return '[%s](%s)' % (self.title, self.url)
+
+    def __repr__(self):
+        return '<Reference (%s|%s)>' % (self.title, self.url)
+
+    def __eq__(self, other):
+        return self.url == other.url and self.title == other.title
+
+
+class NotFoundException(Exception):
+    pass
