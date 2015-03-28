@@ -42,6 +42,23 @@ Usage
 More attributes, methods and helpers are well documented and available in the
 `source code <https://github.com/vulndb/python-sdk/blob/master/vulndb/db_vuln.py>`_.
 
+Contributing
+============
+Send your `pull requests <https://help.github.com/articles/using-pull-requests/>`_
+with improvements and bug fixes, making sure that all tests ``PASS``:
+
+::
+
+    $ nosetests vulndb/
+    ..........
+    ----------------------------------------------------------------------
+    Ran 10 tests in 0.355s
+
+    OK
+
+
+Install the dev dependencies by running ``pip install -r vulndb/requirements-dev.txt``
+
 Updating the database
 =====================
 This package embeds the `vulnerability database <https://github.com/vulndb/data>`_
@@ -68,19 +85,3 @@ After updating the database it's a good idea to publish the latest at ``pypi`` u
     python setup.py sdist upload
 
 
-Contributing
-============
-Send your `pull requests <https://help.github.com/articles/using-pull-requests/>`_
-with improvements and bug fixes, making sure that all tests ``PASS``:
-
-::
-
-    $ nosetests vulndb/
-    ..........
-    ----------------------------------------------------------------------
-    Ran 10 tests in 0.355s
-
-    OK
-
-
-Install the test dependencies by running ``pip install -r vulndb/requirements-dev.txt``
