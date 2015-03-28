@@ -12,7 +12,7 @@ setup(
     platforms='Linux',
 
     description='Provides access to the vulndb information',
-    long_description=open(join(dirname(__file__), 'README.md')).read(),
+    long_description=open(join(dirname(__file__), 'README.rst')).read(),
 
     author='Andres Riancho',
     author_email='andres@tagcube.io',
