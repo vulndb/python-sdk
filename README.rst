@@ -28,18 +28,19 @@ Usage
 
     >>> from vulndb import DBVuln
     >>> dbv = DBVuln.from_id(42)
-    >>> dbv.get_title()
+    >>> dbv.title
     'SQL Injection'
-    >>> dbv.get_severity()
-    'High'
-    >>> r = dbv.get_references()[0]
-    >>> r.get_url()
+    >>> dbv.severity
+    'high'
+    >>> r = dbv.references[0]
+    >>> r.url
     'http://example.com/sqli-description.html'
-    >>> r.get_title()
+    >>> r.title
     'SQL injection cheat-sheet'
 
 
-More methods and helpers available in the source code.
+More attributes, methods and helpers are well documented and available in the
+`source code <https://github.com/vulndb/python-sdk/blob/master/vulndb/db_vuln.py>`_.
 
 Contributing
 ============
