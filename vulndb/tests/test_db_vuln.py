@@ -33,8 +33,13 @@ class TestDBVuln(unittest.TestCase):
         }
 
     def setUp(self):
+        self.original_db_path = DBVuln.DB_PATH
+
         current_dir = os.path.dirname(os.path.realpath(__file__))
         DBVuln.DB_PATH = os.path.join(current_dir, 'db')
+
+    def tearDown(self):
+        DBVuln.DB_PATH = self.original_db_path
 
     def test_basic(self):
         dbv = DBVuln(**self.DEFAULT_KWARGS)
