@@ -30,6 +30,10 @@ Usage
     >>> dbv = DBVuln.from_id(42)
     >>> dbv.title
     'SQL Injection'
+    >>> dbv.description
+    'A long and actionable description for SQL injection ...'
+    >>> dbv.fix_guidance
+    'Explains the developer how to fix SQL injections, usually a couple of <p> long ...'
     >>> dbv.severity
     'high'
     >>> r = dbv.references[0]
