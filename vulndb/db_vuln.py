@@ -100,6 +100,19 @@ class DBVuln(object):
         raise NotFoundException('No data for ID %s' % _id)
 
     @staticmethod
+    def get_all_db_ids():
+        """
+        :return: A list with all the database IDs as integers
+        """
+        _ids = []
+
+        for _file in os.listdir(DBVuln.DB_PATH):
+            _id = _file.split('-')[0]
+            _ids.append(_id)
+
+        return _ids
+
+    @staticmethod
     def load_from_json(db_file):
         """
         Parses the JSON data and returns it
