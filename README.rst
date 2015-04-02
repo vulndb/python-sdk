@@ -78,8 +78,9 @@ follow these steps:
     cp -rf data/db/*.json vulndb/db/
     git add vulndb/db/
     
-    # Bump the version number
+    # Bump the version numbers
     subl vulndb/version.txt
+    cd data; git rev-parse HEAD > ../vulndb/db-version.txt; cd ..
 
     # Push to repo
     git commit vulndb/db/ vulndb/version.txt -m 'Updated vulnerability database'

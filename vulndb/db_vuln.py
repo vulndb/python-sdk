@@ -15,6 +15,7 @@ class DBVuln(object):
     :see: https://github.com/vulndb/data
     """
     DB_PATH = os.path.join(os.path.dirname(os.path.realpath(__file__)), 'db')
+    DB_VERSION_FILE = 'db-version.txt'
 
     def __init__(self, _id=None, title=None, description=None, severity=None,
                  wasc=None, tags=None, cwe=None, owasp_top_10=None, fix=None,
@@ -34,6 +35,12 @@ class DBVuln(object):
         self.fix = fix
         self.references = references
         self.db_file = db_file
+
+    @staticmethod
+    def get_db_version():
+        db_version = os.path.join(os.path.dirname(os.path.realpath(__file__)),
+                                  DBVuln.DB_VERSION_FILE)
+        return file(db_version).read().strip()
 
     @classmethod
     def from_file(cls, db_file):
