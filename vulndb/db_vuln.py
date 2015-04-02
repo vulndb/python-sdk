@@ -18,7 +18,7 @@ class DBVuln(object):
 
     def __init__(self, _id=None, title=None, description=None, severity=None,
                  wasc=None, tags=None, cwe=None, owasp_top_10=None, fix=None,
-                 references=None):
+                 references=None, db_file=None):
         """
         Creates a new DBVuln, setting the internal attributes to the provided
         kwargs.
@@ -33,6 +33,7 @@ class DBVuln(object):
         self.owasp_top_10 = owasp_top_10
         self.fix = fix
         self.references = references
+        self.db_file = db_file
 
     @classmethod
     def from_file(cls, db_file):
@@ -140,6 +141,7 @@ class DBVuln(object):
             'owasp_top_10': raw.get('owasp_top_10', {}),
             'fix': raw['fix'],
             'references': DBVuln.handle_references(raw.get('references', [])),
+            'db_file': db_file,
         }
 
         return data
@@ -170,10 +172,12 @@ class DBVuln(object):
         """
         owasp_version = int(owasp_version)
 
+        # Just return one of them, 2013 release has priority over 2010
+        if owasp_version == 2013:
+            return OWASP_TOP10_2013_URL_FMT % risk_id
+
         if owasp_version == 2010:
             return OWASP_TOP10_2010_URL_FMT % risk_id
-        elif owasp_version == 2013:
-            return OWASP_TOP10_2013_URL_FMT % risk_id
 
     @staticmethod
     def handle_multiline_field(field_data):

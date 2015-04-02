@@ -14,8 +14,11 @@ MOCK_CWE = ['89']
 MOCK_OWASP_TOP_10 = {"2010": [1], "2013": [2]}
 MOCK_FIX = {"guidance": "A very long text explaining how to fix...",
             "effort": 50}
-MOCK_REFERENCES = [{"url": "http://foo.com/xss", "title": "First reference to XSS vulnerability"},
-                   {"url": "http://asp.net/xss", "title": "How to fix XSS vulns in ASP.NET"}]
+MOCK_DB_FILE = 'path/to/file.json'
+MOCK_REFERENCES = [{"url": "http://foo.com/xss",
+                    "title": "First reference to XSS vulnerability"},
+                   {"url": "http://asp.net/xss",
+                    "title": "How to fix XSS vulns in ASP.NET"}]
 
 
 class TestDBVuln(unittest.TestCase):
@@ -30,6 +33,7 @@ class TestDBVuln(unittest.TestCase):
             'owasp_top_10': MOCK_OWASP_TOP_10,
             'fix': MOCK_FIX,
             'references': MOCK_REFERENCES,
+            'db_file': MOCK_DB_FILE
         }
 
     def setUp(self):
@@ -54,6 +58,7 @@ class TestDBVuln(unittest.TestCase):
         self.assertEqual(dbv.owasp_top_10, MOCK_OWASP_TOP_10)
         self.assertEqual(dbv.fix, MOCK_FIX)
         self.assertEqual(dbv.references, MOCK_REFERENCES)
+        self.assertEqual(dbv.db_file, MOCK_DB_FILE)
 
     def test_from_file(self):
         _file = os.path.join(DBVuln.DB_PATH, '123-spec-example.json')
@@ -62,9 +67,13 @@ class TestDBVuln(unittest.TestCase):
         dbv_2 = DBVuln.from_id(123)
 
         self.assertEqual(dbv_1, dbv_2)
+        self.assertEqual(dbv_1.db_file, _file)
 
     def test_from_id(self):
         dbv = DBVuln.from_id(123)
+
+        _file = os.path.join(DBVuln.DB_PATH, '123-spec-example.json')
+        self.assertEqual(dbv.db_file, _file)
 
         expected_references = [Reference("http://foo.com/xss",
                                          "First reference to XSS vulnerability"),
