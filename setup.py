@@ -7,7 +7,7 @@ from os.path import join, dirname
 setup(
     name='vulndb',
 
-    version=open(join(dirname(__file__), 'vulndb', 'version.txt')).read(),
+    version=open(join(dirname(__file__), 'vulndb', 'version.txt')).read().strip(),
     license='BSD 3-clause',
     platforms='Linux',
 
