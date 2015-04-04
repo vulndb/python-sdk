@@ -13,6 +13,7 @@ cd data
 git pull
 cd ..
 
+git rm vulndb/db/*.json
 cp -rf data/db/*.json vulndb/db/
 git add vulndb/db/
 
