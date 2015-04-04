@@ -115,6 +115,8 @@ class DBVuln(object):
         _ids = []
 
         for _file in os.listdir(DBVuln.DB_PATH):
+            if not _file.endswith('.json'):
+                continue
             _id = _file.split('-')[0]
             _ids.append(_id)
 
