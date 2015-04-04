@@ -200,7 +200,7 @@ class DBVuln(object):
         if isinstance(field_data, basestring):
             return field_data
 
-        return '\n'.join(field_data)
+        return ' '.join(field_data)
 
     @staticmethod
     def handle_references(json_references):
