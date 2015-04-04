@@ -37,9 +37,9 @@
     ]
   }, 
   "tags": [
+    "web",
     "sql", 
     "injection", 
-    "regexp", 
     "database", 
     "error"
   ], 

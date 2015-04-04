@@ -21,6 +21,7 @@
     ]
   }, 
   "tags": [
+    "web",
     "ssl"
   ],
   "owasp_top_10": {

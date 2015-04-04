@@ -22,9 +22,9 @@
     ]
   }, 
   "tags": [
+    "web",
     "nosql", 
     "injection", 
-    "regexp", 
     "database", 
     "error"
   ], 

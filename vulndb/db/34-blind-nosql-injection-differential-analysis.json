@@ -23,9 +23,9 @@
     ]
   }, 
   "tags": [
+    "web",
     "nosql", 
     "blind", 
-    "differential", 
     "injection", 
     "database"
   ], 

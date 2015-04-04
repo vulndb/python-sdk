@@ -39,9 +39,9 @@
     ]
   }, 
   "tags": [
+    "web",
     "sql", 
-    "blind", 
-    "differential", 
+    "blind",
     "injection", 
     "database"
   ], 

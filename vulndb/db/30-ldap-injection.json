@@ -34,9 +34,9 @@
     ]
   }, 
   "tags": [
+    "web",
     "ldap", 
-    "injection", 
-    "regexp"
+    "injection"
   ], 
   "references": [
     {

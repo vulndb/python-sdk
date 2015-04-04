@@ -30,9 +30,9 @@
     ]
   }, 
   "tags": [
+    "web",
     "code", 
-    "injection", 
-    "timing", 
+    "injection",
     "blind"
   ], 
   "references": [

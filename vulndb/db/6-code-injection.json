@@ -30,9 +30,9 @@
     ]
   }, 
   "tags": [
+    "web",
     "code", 
-    "injection", 
-    "regexp"
+    "injection"
   ], 
   "references": [
     {

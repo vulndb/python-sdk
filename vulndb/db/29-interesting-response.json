@@ -13,6 +13,7 @@
     "guidance": "Manually inspect the HTTP response status code and body"
   }, 
   "tags": [
+    "web",
     "interesting", 
     "response", 
     "server"

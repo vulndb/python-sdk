@@ -41,8 +41,8 @@
     ]
   }, 
   "tags": [
+    "web",
     "csrf", 
-    "rdiff", 
     "form", 
     "token"
   ], 
