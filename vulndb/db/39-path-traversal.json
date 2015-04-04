@@ -42,6 +42,8 @@
       "enforced by the directory are correct."
     ]
   }, 
+  "cwe": ["22"],
+  "owasp_top_10": {"2013": [4]},
   "tags": [
     "web",
     "path", 

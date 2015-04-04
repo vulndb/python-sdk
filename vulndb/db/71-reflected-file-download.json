@@ -29,6 +29,8 @@
       "in the creation of HTTP response bodies\n"
     ]
   }, 
+  "cwe": ["79"],
+  "owasp_top_10": {"2013": [1]},
   "tags": [
     "web",
     "rfd",

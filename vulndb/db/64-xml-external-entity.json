@@ -21,6 +21,8 @@
       "any declared DTD included in the XML document."
     ]
   }, 
+  "cwe": ["611"],
+  "owasp_top_10": {"2013": [1]},
   "references": [
     {
       "url": "https://www.owasp.org/index.php/XML_External_Entity_%28XXE%29_Processing", 

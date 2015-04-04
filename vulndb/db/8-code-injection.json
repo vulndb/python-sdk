@@ -1,6 +1,6 @@
 {
-  "id": 6, 
-  "title": "Code injection", 
+  "id": 8, 
+  "title": "Code injection (timing attack)", 
   "severity": "high", 
   "description": [
     "A modern web application will be reliant on several different", 
@@ -14,11 +14,10 @@
     "when the server takes untrusted code (ie. from the client) and", 
     "executes it.\n\nCyber-criminals will abuse this weakness to execute", 
     "arbitrary code on the server, which could result in complete server", 
-    "compromise.\n\nThe tool was able to inject specific server-side code and", 
-    "have the executed output from the code contained within the server", 
-    "response. This indicates that proper input sanitisation is not", 
-    "occurring."
+    "compromise."
   ], 
+  "cwe": ["95"],
+  "owasp_top_10": {"2013": [1]},
   "fix": {
     "effort": 50, 
     "guidance": [
@@ -29,12 +28,11 @@
       "required, then no non-alpha characters should not be accepted."
     ]
   }, 
-  "cwe": ["94", "95"],
-  "owasp_top_10": {"2013": [1]},
   "tags": [
     "web",
     "code", 
-    "injection"
+    "injection",
+    "blind"
   ], 
   "references": [
     {
@@ -44,6 +42,10 @@
     {
       "url": "http://www.aspdev.org/asp/asp-eval-execute/", 
       "title": "ASP eval documentation"
+    }, 
+    {
+      "url": "http://en.wikipedia.org/wiki/Eval#Ruby", 
+      "title": "Ruby eval documentation"
     }, 
     {
       "url": "http://php.net/manual/en/function.eval.php", 

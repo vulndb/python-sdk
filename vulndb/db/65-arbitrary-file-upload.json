@@ -43,6 +43,8 @@
     "file", 
     "upload"
   ], 
+  "cwe": ["434"],
+  "owasp_top_10": {"2013": [4]},
   "references": [
     {
       "url": "https://www.owasp.org/index.php/Unrestricted_File_Upload", 

@@ -27,6 +27,8 @@
       "server should redirect to a standard error page."
     ]
   }, 
+  "cwe": ["601"],
+  "owasp_top_10": {"2013": [10]},
   "tags": [
     "web",
     "unvalidated", 

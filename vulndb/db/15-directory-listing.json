@@ -32,6 +32,8 @@
       "function.\n"
     ]
   }, 
+  "cwe": ["548"],
+  "owasp_top_10": {"2013": [5]},
   "tags": [
     "web",
     "path", 
