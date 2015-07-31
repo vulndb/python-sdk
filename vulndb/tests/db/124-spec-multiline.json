@@ -2,7 +2,7 @@
   "id": 123,
   "title": "Cross-Site Scripting",
   "description": ["A very long description for",
-                  " Cross-Site Scripting"],
+                  "Cross-Site Scripting"],
   "severity": "medium",
   "wasc": ["0003"],
   "tags": ["xss", "client side"],

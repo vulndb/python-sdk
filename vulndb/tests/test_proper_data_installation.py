@@ -3,7 +3,7 @@ import unittest
 
 
 class TestDataIsInstalled(unittest.TestCase):
-    TEST_CMD = "python -c 'from vulndb import DBVuln; DBVuln.from_id(123)'"
+    TEST_CMD = "python -c 'from vulndb import DBVuln; DBVuln.from_id(1)'"
 
     def test_data_is_installed_in_virtualenv(self):
         # When we run this in the current CMD it will load the python class

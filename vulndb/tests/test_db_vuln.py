@@ -120,10 +120,10 @@ class TestDBVuln(unittest.TestCase):
 
     def test_long_lines(self):
         dbv = DBVuln.from_id(124)
-        self.assertEqual(dbv.description, u'A very long description for\n'
+        self.assertEqual(dbv.description, u'A very long description for'
                                           u' Cross-Site Scripting')
 
     def test_long_lines_with_new_line(self):
         dbv = DBVuln.from_id(125)
-        self.assertEqual(dbv.description, u'Start line 1\n\n'
-                                          u'Start line 2\n')
+        self.assertEqual(dbv.description, u'Start line 1\n'
+                                          u' Start line 2\n')

@@ -36,10 +36,12 @@
       "column is configured to contain integers."
     ]
   }, 
+  "cwe": ["89"],
+  "owasp_top_10": {"2013": [1]},
   "tags": [
+    "web",
     "sql", 
     "injection", 
-    "regexp", 
     "database", 
     "error"
   ], 

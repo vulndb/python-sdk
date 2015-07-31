@@ -25,8 +25,9 @@
       "origin header should never be used to validate a client's access as it", 
       "is trivial to change."
     ]
-  }, 
+  },
   "tags": [
+    "web",
     "access", 
     "restriction", 
     "server", 

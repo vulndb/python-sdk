@@ -35,7 +35,10 @@
       "into an authenticated session."
     ]
   }, 
+  "cwe": ["384"],
+  "owasp_top_10": {"2013": [2]},
   "tags": [
+    "web",
     "session", 
     "cookie", 
     "injection", 

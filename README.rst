@@ -74,7 +74,7 @@ follow these steps:
 ::
 
     # Update the database
-    . tools/update-db.sh
+    tools/update-db.sh
 
 After updating the database it's a good idea to publish the latest at ``pypi`` using:
 

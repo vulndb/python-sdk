@@ -21,10 +21,12 @@
       "achieved using existing escaping libraries."
     ]
   }, 
+  "cwe": ["89"],
+  "owasp_top_10": {"2013": [1]},
   "tags": [
+    "web",
     "nosql", 
     "injection", 
-    "regexp", 
     "database", 
     "error"
   ], 

@@ -26,11 +26,14 @@
     ]
   }, 
   "tags": [
+    "web",
     "response", 
     "splitting", 
     "injection", 
     "header"
   ], 
+  "cwe": ["98"],
+  "owasp_top_10": {"2013": [1]},
   "references": [
     {
       "url": "http://www.securiteam.com/securityreviews/5WP0E2KFGK.html", 

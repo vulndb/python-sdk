@@ -13,7 +13,10 @@
       "`no-cache, no-store` and the `Pragma` header must be set to `no-cache`."
     ]
   }, 
+  "cwe": ["524", "525"],
+  "owasp_top_10": {"2013": [5]},
   "tags": [
+    "web",
     "browser",
     "cache",
     "session"

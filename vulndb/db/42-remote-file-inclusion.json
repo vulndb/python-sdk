@@ -38,12 +38,14 @@
       "enforced by the directory are correct."
     ]
   }, 
+  "cwe": ["98"],
+  "owasp_top_10": {"2013": [1]},
   "tags": [
+    "web",
     "remote", 
     "file", 
     "inclusion", 
-    "injection", 
-    "regexp"
+    "injection"
   ], 
   "references": [
     {
