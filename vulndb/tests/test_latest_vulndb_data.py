@@ -20,4 +20,6 @@ class TestLatestDBUsed(unittest.TestCase):
         latest_commit = latest_commit.strip()
         latest_saved_commit = DBVuln.get_db_version()
 
-        self.assertEqual(latest_commit, latest_saved_commit)
+        self.assertEqual(latest_commit, latest_saved_commit,
+                         msg='DB version mismatch, this usually gets fixed'
+                             ' by running tools/update-db.sh')
