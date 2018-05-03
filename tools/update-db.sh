@@ -13,9 +13,10 @@ cd data
 git pull
 cd ..
 
+rm -rf vulndb/db/
 mkdir -p vulndb/db/
-cp -rf data/db/*.json vulndb/db/
-git add vulndb/db/
+cp -rf data/db/* vulndb/db/
+git add vulndb/db/*
 
 # Bump the version numbers
 tools/semver.sh bump patch
