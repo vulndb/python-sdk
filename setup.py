@@ -15,7 +15,7 @@ setup(
     long_description=open(join(dirname(__file__), 'README.rst')).read(),
 
     author='Andres Riancho',
-    author_email='andres@tagcube.io',
+    author_email='self@andresriancho.com',
     url='https://github.com/vulndb/python-sdk/',
 
     packages=[p for p in find_packages() if p.startswith('vulndb')],
