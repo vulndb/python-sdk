@@ -1,8 +1,9 @@
 {
   "id": 123,
   "title": "Cross-Site Scripting",
-  "description": ["Start line 1\n",
-                  "Start line 2\n"],
+  "description": {
+    "$ref": "#/files/description/1"
+  },
   "severity": "medium",
   "wasc": ["0003"],
   "tags": ["xss", "client side"],
@@ -12,7 +13,9 @@
         "2013": [2]
   },
   "fix": {
-      "guidance": "A very long text explaining how to fix XSS vulnerabilities",
+      "guidance": {
+        "$ref": "#/files/fix/39"
+      },
       "effort": 50
     },
   "references": [

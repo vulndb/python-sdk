@@ -16,6 +16,7 @@ class DBVuln(object):
     """
     DB_PATH = os.path.join(os.path.dirname(os.path.realpath(__file__)), 'db')
     DB_VERSION_FILE = 'db-version.txt'
+    LANG = 'en'
 
     def __init__(self, _id=None, title=None, description=None, severity=None,
                  wasc=None, tags=None, cwe=None, owasp_top_10=None, fix=None,
@@ -35,6 +36,22 @@ class DBVuln(object):
         self.fix = fix
         self.references = references
         self.db_file = db_file
+
+    @staticmethod
+    def get_json_path():
+        return os.path.join(DBVuln.DB_PATH, DBVuln.LANG)
+
+    @staticmethod
+    def get_description_path():
+        return os.path.join(DBVuln.DB_PATH, DBVuln.LANG, 'description')
+
+    @staticmethod
+    def get_fix_path():
+        return os.path.join(DBVuln.DB_PATH, DBVuln.LANG, 'fix')
+
+    @staticmethod
+    def get_all_languages():
+        return os.listdir(DBVuln.DB_PATH)
 
     @staticmethod
     def get_db_version():
@@ -78,7 +95,7 @@ class DBVuln(object):
                     "effort": 50
                     },
         """
-        return self.handle_multiline_field(self.fix['guidance'])
+        return self.handle_ref(self.fix['guidance'])
 
     @property
     def fix_effort(self):
@@ -101,9 +118,9 @@ class DBVuln(object):
         """
         file_start = '%s-' % _id
 
-        for _file in os.listdir(DBVuln.DB_PATH):
+        for _file in os.listdir(DBVuln.get_json_path()):
             if _file.startswith(file_start):
-                return os.path.join(DBVuln.DB_PATH, _file)
+                return os.path.join(DBVuln.get_json_path(), _file)
 
         raise NotFoundException('No data for ID %s' % _id)
 
@@ -114,13 +131,55 @@ class DBVuln(object):
         """
         _ids = []
 
-        for _file in os.listdir(DBVuln.DB_PATH):
+        for _file in os.listdir(DBVuln.get_json_path()):
             if not _file.endswith('.json'):
                 continue
             _id = _file.split('-')[0]
             _ids.append(_id)
 
         return _ids
+
+    @staticmethod
+    def handle_ref(attr):
+        """
+        Receives something like:
+
+           {
+             "$ref": "#/files/description/1"
+           },
+
+        Or:
+
+           {
+             "$ref": "#/files/fix/39"
+           }
+
+        And returns the contents of the description or fix file.
+
+        :param attr: A dict containing a reference
+        :return: Markdown referenced by the attr
+        """
+        ref = attr.get('$ref', None)
+        if ref is None:
+            raise NotFoundException('No $ref in attribute')
+
+        _, files, _type, _id = ref.split('/')
+
+        if 'files' != files:
+            raise NotFoundException('Mandatory "files" path was not found in $ref')
+
+        if _type not in ('fix', 'description'):
+            raise NotFoundException('Mandatory fix or description not found in $ref')
+
+        if not _id.isdigit():
+            raise NotFoundException('Mandatory integer ID not found in $ref')
+
+        file_path = os.path.join(DBVuln.get_json_path(), _type, '%s.md' % _id)
+
+        if not os.path.exists(file_path):
+            raise NotFoundException('$ref points to a non existing file')
+
+        return file(file_path).read()
 
     @staticmethod
     def load_from_json(db_file):
@@ -142,7 +201,7 @@ class DBVuln(object):
         data = {
             '_id': raw['id'],
             'title': raw['title'],
-            'description': DBVuln.handle_multiline_field(raw['description']),
+            'description': DBVuln.handle_ref(raw['description']),
             'severity': raw['severity'],
             'wasc': raw.get('wasc', []),
             'tags': raw.get('tags', []),
@@ -187,22 +246,6 @@ class DBVuln(object):
 
         if owasp_version == 2010:
             return OWASP_TOP10_2010_URL_FMT % risk_id
-
-    @staticmethod
-    def handle_multiline_field(field_data):
-        """
-        According to the spec there might be some fields which contain long
-        descriptions, which might be strings or lists with strings. I translate
-        the list of strings into a long string and return it.
-
-        :see: https://github.com/vulndb/data/issues/5
-        :param field_data: A string or a list
-        :return: A string
-        """
-        if isinstance(field_data, basestring):
-            return field_data
-
-        return ' '.join(field_data)
 
     @staticmethod
     def handle_references(json_references):

@@ -61,7 +61,7 @@ class TestDBVuln(unittest.TestCase):
         self.assertEqual(dbv.db_file, MOCK_DB_FILE)
 
     def test_from_file(self):
-        _file = os.path.join(DBVuln.DB_PATH, '123-spec-example.json')
+        _file = os.path.join(DBVuln.DB_PATH, DBVuln.LANG, '123-spec-example.json')
 
         dbv_1 = DBVuln.from_file(_file)
         dbv_2 = DBVuln.from_id(123)
@@ -72,7 +72,7 @@ class TestDBVuln(unittest.TestCase):
     def test_from_id(self):
         dbv = DBVuln.from_id(123)
 
-        _file = os.path.join(DBVuln.DB_PATH, '123-spec-example.json')
+        _file = os.path.join(DBVuln.DB_PATH, DBVuln.LANG, '123-spec-example.json')
         self.assertEqual(dbv.db_file, _file)
 
         expected_references = [Reference("http://foo.com/xss",
@@ -81,22 +81,20 @@ class TestDBVuln(unittest.TestCase):
                                          "How to fix XSS vulns in ASP.NET")]
 
         self.assertEqual(dbv.title, u'Cross-Site Scripting')
-        self.assertEqual(dbv.description, u'A very long description for'
-                                          u' Cross-Site Scripting')
+        self.assertEqual(dbv.description, u'A very long text explaining what a XSS'
+                                          u' vulnerability is')
         self.assertEqual(dbv.id, MOCK_ID)
         self.assertEqual(dbv.severity, MOCK_SEVERITY)
         self.assertEqual(dbv.wasc, [u'0003'])
         self.assertEqual(dbv.tags, [u'xss', u'client side'])
         self.assertEqual(dbv.cwe, [u'0003', u'0007'])
         self.assertEqual(dbv.owasp_top_10, {"2010": [1], "2013": [2]},)
-        self.assertEqual(dbv.fix, {u"guidance": u"A very long text explaining"
-                                                u" how to fix XSS"
-                                                u" vulnerabilities",
+        self.assertEqual(dbv.fix, {u"guidance": {u'$ref': u'#/files/fix/39'},
                                    u"effort": 50})
         self.assertEqual(dbv.references, expected_references)
         self.assertEqual(dbv.fix_effort, 50)
-        self.assertEqual(dbv.fix_guidance, u"A very long text explaining"
-                                           u" how to fix XSS vulnerabilities")
+        self.assertEqual(dbv.fix_guidance, u'A very long text explaining how developers'
+                                           u' should prevent\nXSS vulnerabilities.\n')
 
     def test_get_cwe_url(self):
         dbv = DBVuln(**self.DEFAULT_KWARGS)
@@ -117,13 +115,3 @@ class TestDBVuln(unittest.TestCase):
                          'https://www.owasp.org/index.php/Top_10_2013-A2')
 
         self.assertEqual(dbv.get_owasp_top_10_url(2033, 2), None)
-
-    def test_long_lines(self):
-        dbv = DBVuln.from_id(124)
-        self.assertEqual(dbv.description, u'A very long description for'
-                                          u' Cross-Site Scripting')
-
-    def test_long_lines_with_new_line(self):
-        dbv = DBVuln.from_id(125)
-        self.assertEqual(dbv.description, u'Start line 1\n'
-                                          u' Start line 2\n')
