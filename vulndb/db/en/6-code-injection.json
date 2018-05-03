@@ -1,0 +1,46 @@
+{
+  "id": 6, 
+  "title": "Code injection", 
+  "severity": "high", 
+  "description": {
+    "$ref": "#/files/description/6"
+  }, 
+  "fix": {
+    "effort": 50, 
+    "guidance": {
+      "$ref": "#/files/fix/47"
+    }
+  }, 
+  "cwe": [
+    "94", 
+    "95"
+  ], 
+  "owasp_top_10": {
+    "2013": [
+      1
+    ]
+  }, 
+  "tags": [
+    "web", 
+    "code", 
+    "injection"
+  ], 
+  "references": [
+    {
+      "url": "http://docs.python.org/py3k/library/functions.html#eval", 
+      "title": "Python eval documentation"
+    }, 
+    {
+      "url": "http://www.aspdev.org/asp/asp-eval-execute/", 
+      "title": "ASP eval documentation"
+    }, 
+    {
+      "url": "http://php.net/manual/en/function.eval.php", 
+      "title": "PHP eval documentation"
+    }, 
+    {
+      "url": "http://perldoc.perl.org/functions/eval.html", 
+      "title": "Perl eval documentation"
+    }
+  ]
+}

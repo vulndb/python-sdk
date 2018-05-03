@@ -1,0 +1,20 @@
+{
+  "id": 11, 
+  "title": "Cookie set for parent domain", 
+  "severity": "informational", 
+  "description": {
+    "$ref": "#/files/description/11"
+  }, 
+  "fix": {
+    "effort": 50, 
+    "guidance": {
+      "$ref": "#/files/fix/40"
+    }
+  }, 
+  "references": [
+    {
+      "url": "https://www.owasp.org/index.php/Testing_for_cookies_attributes_(OTG-SESS-002)", 
+      "title": "OWASP"
+    }
+  ]
+}

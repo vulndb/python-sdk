@@ -1,0 +1,26 @@
+{
+  "id": 29, 
+  "title": "Interesting response", 
+  "severity": "informational", 
+  "description": {
+    "$ref": "#/files/description/29"
+  }, 
+  "fix": {
+    "effort": 60, 
+    "guidance": {
+      "$ref": "#/files/fix/7"
+    }
+  }, 
+  "tags": [
+    "web", 
+    "interesting", 
+    "response", 
+    "server"
+  ], 
+  "references": [
+    {
+      "url": "http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html", 
+      "title": "RFC-2616"
+    }
+  ]
+}

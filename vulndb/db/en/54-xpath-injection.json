@@ -1,0 +1,40 @@
+{
+  "id": 54, 
+  "title": "XPath Injection", 
+  "severity": "high", 
+  "description": {
+    "$ref": "#/files/description/54"
+  }, 
+  "fix": {
+    "effort": 50, 
+    "guidance": {
+      "$ref": "#/files/fix/24"
+    }
+  }, 
+  "cwe": [
+    "91", 
+    "643"
+  ], 
+  "owasp_top_10": {
+    "2013": [
+      1
+    ]
+  }, 
+  "tags": [
+    "web", 
+    "xpath", 
+    "database", 
+    "error", 
+    "injection"
+  ], 
+  "references": [
+    {
+      "url": "http://projects.webappsec.org/w/page/13247005/XPath%20Injection", 
+      "title": "WASC"
+    }, 
+    {
+      "url": "https://www.owasp.org/index.php/XPATH_Injection", 
+      "title": "OWASP"
+    }
+  ]
+}

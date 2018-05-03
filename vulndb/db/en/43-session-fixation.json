@@ -1,0 +1,40 @@
+{
+  "id": 43, 
+  "title": "Session fixation", 
+  "severity": "high", 
+  "description": {
+    "$ref": "#/files/description/43"
+  }, 
+  "fix": {
+    "effort": 50, 
+    "guidance": {
+      "$ref": "#/files/fix/15"
+    }
+  }, 
+  "cwe": [
+    "384"
+  ], 
+  "owasp_top_10": {
+    "2013": [
+      2
+    ]
+  }, 
+  "tags": [
+    "web", 
+    "session", 
+    "cookie", 
+    "injection", 
+    "fixation", 
+    "hijacking"
+  ], 
+  "references": [
+    {
+      "url": "http://projects.webappsec.org/w/page/13246960/Session%20Fixation", 
+      "title": "WASC"
+    }, 
+    {
+      "url": "https://www.owasp.org/index.php/Session_fixation", 
+      "title": "OWASP - Session fixation"
+    }
+  ]
+}

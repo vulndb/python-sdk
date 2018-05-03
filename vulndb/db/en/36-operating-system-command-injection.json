@@ -1,0 +1,39 @@
+{
+  "id": 36, 
+  "title": "Operating system command injection", 
+  "severity": "high", 
+  "description": {
+    "$ref": "#/files/description/36"
+  }, 
+  "fix": {
+    "effort": 50, 
+    "guidance": {
+      "$ref": "#/files/fix/19"
+    }
+  }, 
+  "cwe": [
+    "78"
+  ], 
+  "owasp_top_10": {
+    "2013": [
+      1
+    ]
+  }, 
+  "tags": [
+    "web", 
+    "os", 
+    "command", 
+    "code", 
+    "injection"
+  ], 
+  "references": [
+    {
+      "url": "http://projects.webappsec.org/w/page/13246950/OS%20Commanding", 
+      "title": "WASC"
+    }, 
+    {
+      "url": "https://www.owasp.org/index.php/OS_Command_Injection", 
+      "title": "OWASP"
+    }
+  ]
+}

@@ -1,0 +1,27 @@
+{
+  "id": 23, 
+  "title": "Publicly writable directory", 
+  "severity": "high", 
+  "description": {
+    "$ref": "#/files/description/23"
+  }, 
+  "fix": {
+    "effort": 50, 
+    "guidance": {
+      "$ref": "#/files/fix/23"
+    }
+  }, 
+  "tags": [
+    "web", 
+    "http", 
+    "methods", 
+    "put", 
+    "server"
+  ], 
+  "references": [
+    {
+      "url": "http://www.w3.org/Protocols/rfc2616/rfc2616-sec9.html", 
+      "title": "RFC-2616 document"
+    }
+  ]
+}

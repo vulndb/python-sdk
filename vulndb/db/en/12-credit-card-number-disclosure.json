@@ -1,0 +1,27 @@
+{
+  "id": 12, 
+  "title": "Credit card number disclosure", 
+  "severity": "medium", 
+  "description": {
+    "$ref": "#/files/description/12"
+  }, 
+  "fix": {
+    "effort": 50, 
+    "guidance": {
+      "$ref": "#/files/fix/57"
+    }
+  }, 
+  "cwe": [
+    "200"
+  ], 
+  "references": [
+    {
+      "url": "http://en.wikipedia.org/wiki/Luhn_algorithm", 
+      "title": "Wikipedia - Luhn algorithm"
+    }, 
+    {
+      "url": "http://en.wikipedia.org/wiki/Bank_card_number", 
+      "title": "Wikipedia - Bank card number"
+    }
+  ]
+}

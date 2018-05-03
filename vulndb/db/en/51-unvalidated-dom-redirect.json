@@ -1,0 +1,35 @@
+{
+  "id": 51, 
+  "title": "Unvalidated DOM redirect", 
+  "severity": "medium", 
+  "description": {
+    "$ref": "#/files/description/51"
+  }, 
+  "cwe": [
+    "601"
+  ], 
+  "owasp_top_10": {
+    "2013": [
+      10
+    ]
+  }, 
+  "fix": {
+    "effort": 50, 
+    "guidance": {
+      "$ref": "#/files/fix/29"
+    }
+  }, 
+  "tags": [
+    "web", 
+    "unvalidated", 
+    "redirect", 
+    "dom", 
+    "injection"
+  ], 
+  "references": [
+    {
+      "url": "https://www.owasp.org/index.php/Top_10_2010-A10-Unvalidated_Redirects_and_Forwards", 
+      "title": "OWASP Top 10 2010"
+    }
+  ]
+}

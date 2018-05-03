@@ -1,0 +1,30 @@
+{
+  "id": 2, 
+  "title": "A backdoor file exists on the server", 
+  "severity": "high", 
+  "description": {
+    "$ref": "#/files/description/2"
+  }, 
+  "fix": {
+    "effort": 50, 
+    "guidance": {
+      "$ref": "#/files/fix/32"
+    }
+  }, 
+  "cwe": [
+    "489"
+  ], 
+  "tags": [
+    "web", 
+    "path", 
+    "backdoor", 
+    "file", 
+    "discovery"
+  ], 
+  "references": [
+    {
+      "url": "https://www.blackhat.com/presentations/bh-usa-07/Wysopal_and_Eng/Presentation/bh-usa-07-wysopal_and_eng.pdf", 
+      "title": "Static Detection of Application Backdoors"
+    }
+  ]
+}

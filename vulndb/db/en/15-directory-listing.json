@@ -1,0 +1,35 @@
+{
+  "id": 15, 
+  "title": "Directory listing", 
+  "severity": "low", 
+  "description": {
+    "$ref": "#/files/description/15"
+  }, 
+  "fix": {
+    "effort": 50, 
+    "guidance": {
+      "$ref": "#/files/fix/41"
+    }
+  }, 
+  "cwe": [
+    "548"
+  ], 
+  "owasp_top_10": {
+    "2013": [
+      5
+    ]
+  }, 
+  "tags": [
+    "web", 
+    "path", 
+    "directory", 
+    "listing", 
+    "index"
+  ], 
+  "references": [
+    {
+      "url": "http://projects.webappsec.org/w/page/13246922/Directory%20Indexing", 
+      "title": "WASC"
+    }
+  ]
+}

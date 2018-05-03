@@ -1,0 +1,27 @@
+{
+  "id": 32, 
+  "title": "Mixed Resource", 
+  "severity": "medium", 
+  "description": {
+    "$ref": "#/files/description/32"
+  }, 
+  "fix": {
+    "effort": 50, 
+    "guidance": {
+      "$ref": "#/files/fix/4"
+    }
+  }, 
+  "tags": [
+    "web", 
+    "unencrypted", 
+    "resource", 
+    "javascript", 
+    "stylesheet"
+  ], 
+  "references": [
+    {
+      "url": "http://googleonlinesecurity.blogspot.com/2011/06/trying-to-end-mixed-scripting.html", 
+      "title": "Google Online Security Blog"
+    }
+  ]
+}

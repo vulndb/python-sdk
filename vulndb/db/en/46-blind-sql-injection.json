@@ -1,0 +1,47 @@
+{
+  "id": 46, 
+  "title": "Blind SQL Injection", 
+  "severity": "high", 
+  "description": {
+    "$ref": "#/files/description/46"
+  }, 
+  "fix": {
+    "effort": 50, 
+    "guidance": {
+      "$ref": "#/files/fix/1"
+    }
+  }, 
+  "cwe": [
+    "89"
+  ], 
+  "owasp_top_10": {
+    "2013": [
+      1
+    ]
+  }, 
+  "tags": [
+    "web", 
+    "sql", 
+    "blind", 
+    "injection", 
+    "database"
+  ], 
+  "references": [
+    {
+      "url": "http://capec.mitre.org/data/definitions/7.html", 
+      "title": "MITRE - CAPEC"
+    }, 
+    {
+      "url": "http://projects.webappsec.org/w/page/13246963/SQL%20Injection", 
+      "title": "WASC"
+    }, 
+    {
+      "url": "http://www.w3schools.com/sql/sql_injection.asp", 
+      "title": "W3 Schools"
+    }, 
+    {
+      "url": "https://www.owasp.org/index.php/Blind_SQL_Injection", 
+      "title": "OWASP"
+    }
+  ]
+}

@@ -1,0 +1,31 @@
+{
+  "id": 44, 
+  "title": "Source code disclosure", 
+  "severity": "high", 
+  "description": {
+    "$ref": "#/files/description/44"
+  }, 
+  "fix": {
+    "effort": 50, 
+    "guidance": {
+      "$ref": "#/files/fix/56"
+    }
+  }, 
+  "cwe": [
+    "200", 
+    "548"
+  ], 
+  "owasp_top_10": {
+    "2013": [
+      6
+    ]
+  }, 
+  "tags": [
+    "web", 
+    "code", 
+    "source", 
+    "file", 
+    "inclusion", 
+    "disclosure"
+  ]
+}

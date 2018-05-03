@@ -1,0 +1,31 @@
+{
+  "id": 26, 
+  "title": "Access-Control-Allow-Origin header set to '*'", 
+  "severity": "medium", 
+  "description": {
+    "$ref": "#/files/description/26"
+  }, 
+  "fix": {
+    "effort": 50, 
+    "guidance": {
+      "$ref": "#/files/fix/45"
+    }
+  }, 
+  "cwe": [
+    "346"
+  ], 
+  "references": [
+    {
+      "url": "https://www.owasp.org/index.php/CORS_OriginHeaderScrutiny", 
+      "title": "CORS security"
+    }, 
+    {
+      "url": "http://www.w3.org/TR/cors/", 
+      "title": "CORS W3C Specification"
+    }, 
+    {
+      "url": "https://en.wikipedia.org/wiki/Cross-origin_resource_sharing", 
+      "title": "CORS article at Wikipedia"
+    }
+  ]
+}

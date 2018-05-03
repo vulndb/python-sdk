@@ -1,0 +1,31 @@
+{
+  "id": 52, 
+  "title": "WebDAV", 
+  "severity": "informational", 
+  "description": {
+    "$ref": "#/files/description/52"
+  }, 
+  "fix": {
+    "effort": 50, 
+    "guidance": {
+      "$ref": "#/files/fix/52"
+    }
+  }, 
+  "tags": [
+    "web", 
+    "webdav", 
+    "options", 
+    "methods", 
+    "server"
+  ], 
+  "references": [
+    {
+      "url": "https://tools.ietf.org/html/rfc4918",
+      "title": "WebDAV.org"
+    }, 
+    {
+      "url": "http://en.wikipedia.org/wiki/WebDAV", 
+      "title": "Wikipedia"
+    }
+  ]
+}

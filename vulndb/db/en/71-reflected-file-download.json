@@ -1,0 +1,33 @@
+{
+  "id": 71, 
+  "title": "Reflected File Download", 
+  "severity": "medium", 
+  "description": {
+    "$ref": "#/files/description/71"
+  }, 
+  "fix": {
+    "effort": 10, 
+    "guidance": {
+      "$ref": "#/files/fix/27"
+    }
+  }, 
+  "cwe": [
+    "79"
+  ], 
+  "owasp_top_10": {
+    "2013": [
+      1
+    ]
+  }, 
+  "tags": [
+    "web", 
+    "rfd", 
+    "reflected"
+  ], 
+  "references": [
+    {
+      "url": "https://www.trustwave.com/Resources/SpiderLabs-Blog/Reflected-File-Download---A-New-Web-Attack-Vector/", 
+      "title": "Reflected File Download - A New Web Attack Vector"
+    }
+  ]
+}

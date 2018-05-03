@@ -1,0 +1,32 @@
+{
+  "id": 76, 
+  "title": "X-Content-Type-Options header missing", 
+  "severity": "low", 
+  "description": {
+    "$ref": "#/files/description/76"
+  }, 
+  "fix": {
+    "effort": 50, 
+    "guidance": {
+      "$ref": "#/files/fix/53"
+    }
+  }, 
+  "cwe": [], 
+  "owasp_top_10": {
+    "2013": [
+      7
+    ]
+  }, 
+  "tags": [
+    "content", 
+    "sniffing", 
+    "missing", 
+    "header"
+  ], 
+  "references": [
+    {
+      "url": "https://msdn.microsoft.com/en-us/library/gg622941(v=vs.85).aspx", 
+      "title": "Reducing MIME type security risks"
+    }
+  ]
+}

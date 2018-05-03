@@ -1,0 +1,28 @@
+{
+  "id": 40, 
+  "title": "Private IP address disclosure", 
+  "severity": "low", 
+  "description": {
+    "$ref": "#/files/description/40"
+  }, 
+  "fix": {
+    "effort": 50, 
+    "guidance": {
+      "$ref": "#/files/fix/22"
+    }
+  }, 
+  "cwe": [
+    "200"
+  ], 
+  "owasp_top_10": {
+    "2013": [
+      6
+    ]
+  }, 
+  "references": [
+    {
+      "url": "http://projects.webappsec.org/w/page/13246936/Information%20Leakage", 
+      "title": "WebAppSec"
+    }
+  ]
+}

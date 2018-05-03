@@ -1,0 +1,36 @@
+{
+  "id": 63, 
+  "title": "HTTP TRACE", 
+  "severity": "medium", 
+  "description": {
+    "$ref": "#/files/description/63"
+  }, 
+  "fix": {
+    "effort": 50, 
+    "guidance": {
+      "$ref": "#/files/fix/25"
+    }
+  }, 
+  "owasp_top_10": {
+    "2013": [
+      5
+    ]
+  }, 
+  "tags": [
+    "web", 
+    "xst", 
+    "methods", 
+    "trace", 
+    "server"
+  ], 
+  "references": [
+    {
+      "url": "http://capec.mitre.org/data/definitions/107.html", 
+      "title": "CAPEC"
+    }, 
+    {
+      "url": "http://www.owasp.org/index.php/Cross_Site_Tracing", 
+      "title": "OWASP"
+    }
+  ]
+}

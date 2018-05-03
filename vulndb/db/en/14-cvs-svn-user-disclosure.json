@@ -1,0 +1,18 @@
+{
+  "id": 14, 
+  "title": "CVS/SVN user disclosure", 
+  "severity": "low", 
+  "description": {
+    "$ref": "#/files/description/14"
+  }, 
+  "cwe": [
+    "200", 
+    "527"
+  ], 
+  "fix": {
+    "effort": 50, 
+    "guidance": {
+      "$ref": "#/files/fix/49"
+    }
+  }
+}

@@ -1,0 +1,33 @@
+{
+  "id": 65, 
+  "title": "Unrestricted file upload", 
+  "severity": "high", 
+  "description": {
+    "$ref": "#/files/description/65"
+  }, 
+  "fix": {
+    "effort": 10, 
+    "guidance": {
+      "$ref": "#/files/fix/5"
+    }
+  }, 
+  "tags": [
+    "web", 
+    "file", 
+    "upload"
+  ], 
+  "cwe": [
+    "434"
+  ], 
+  "owasp_top_10": {
+    "2013": [
+      4
+    ]
+  }, 
+  "references": [
+    {
+      "url": "https://www.owasp.org/index.php/Unrestricted_File_Upload", 
+      "title": "owasp.org"
+    }
+  ]
+}

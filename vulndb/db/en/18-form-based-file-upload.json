@@ -1,0 +1,25 @@
+{
+  "id": 18, 
+  "title": "Form-based File Upload", 
+  "severity": "informational", 
+  "description": {
+    "$ref": "#/files/description/18"
+  }, 
+  "fix": {
+    "effort": 50, 
+    "guidance": {
+      "$ref": "#/files/fix/5"
+    }
+  }, 
+  "tags": [
+    "web", 
+    "file", 
+    "upload"
+  ], 
+  "references": [
+    {
+      "url": "https://www.owasp.org/index.php/Unrestricted_File_Upload", 
+      "title": "owasp.org"
+    }
+  ]
+}

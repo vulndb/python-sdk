@@ -1,0 +1,27 @@
+{
+  "id": 27, 
+  "title": "Insecure cross-domain policy", 
+  "severity": "low", 
+  "description": {
+    "$ref": "#/files/description/27"
+  }, 
+  "fix": {
+    "effort": 50, 
+    "guidance": {
+      "$ref": "#/files/fix/36"
+    }
+  }, 
+  "cwe": [
+    "346"
+  ], 
+  "references": [
+    {
+      "url": "http://blogs.adobe.com/stateofsecurity/2007/07/crossdomain_policy_files_1.html", 
+      "title": "Adobe"
+    }, 
+    {
+      "url": "https://www.owasp.org/index.php/Test_Cross_Origin_Resource_Sharing_%28OTG-CLIENT-007%29", 
+      "title": "OWASP"
+    }
+  ]
+}

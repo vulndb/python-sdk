@@ -1,0 +1,50 @@
+{
+  "id": 8, 
+  "title": "Code injection (timing attack)", 
+  "severity": "high", 
+  "description": {
+    "$ref": "#/files/description/8"
+  }, 
+  "cwe": [
+    "95"
+  ], 
+  "owasp_top_10": {
+    "2013": [
+      1
+    ]
+  }, 
+  "fix": {
+    "effort": 50, 
+    "guidance": {
+      "$ref": "#/files/fix/47"
+    }
+  }, 
+  "tags": [
+    "web", 
+    "code", 
+    "injection", 
+    "blind"
+  ], 
+  "references": [
+    {
+      "url": "http://docs.python.org/py3k/library/functions.html#eval", 
+      "title": "Python eval documentation"
+    }, 
+    {
+      "url": "http://www.aspdev.org/asp/asp-eval-execute/", 
+      "title": "ASP eval documentation"
+    }, 
+    {
+      "url": "http://en.wikipedia.org/wiki/Eval#Ruby", 
+      "title": "Ruby eval documentation"
+    }, 
+    {
+      "url": "http://php.net/manual/en/function.eval.php", 
+      "title": "PHP eval documentation"
+    }, 
+    {
+      "url": "http://perldoc.perl.org/functions/eval.html", 
+      "title": "Perl eval documentation"
+    }
+  ]
+}

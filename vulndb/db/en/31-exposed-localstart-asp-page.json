@@ -1,0 +1,20 @@
+{
+  "id": 31, 
+  "title": "Exposed localstart.asp page", 
+  "severity": "low", 
+  "description": {
+    "$ref": "#/files/description/31"
+  }, 
+  "fix": {
+    "effort": 50, 
+    "guidance": {
+      "$ref": "#/files/fix/38"
+    }
+  }, 
+  "tags": [
+    "web", 
+    "asp", 
+    "iis", 
+    "server"
+  ]
+}

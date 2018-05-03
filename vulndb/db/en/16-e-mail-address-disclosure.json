@@ -1,0 +1,14 @@
+{
+  "id": 16, 
+  "title": "E-mail address disclosure", 
+  "severity": "informational", 
+  "description": {
+    "$ref": "#/files/description/16"
+  }, 
+  "fix": {
+    "effort": 50, 
+    "guidance": {
+      "$ref": "#/files/fix/3"
+    }
+  }
+}

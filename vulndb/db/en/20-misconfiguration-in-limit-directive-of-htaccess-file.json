@@ -1,0 +1,26 @@
+{
+  "id": 20, 
+  "title": "Misconfiguration in LIMIT directive of .htaccess file", 
+  "severity": "high", 
+  "description": {
+    "$ref": "#/files/description/20"
+  }, 
+  "fix": {
+    "effort": 50, 
+    "guidance": {
+      "$ref": "#/files/fix/51"
+    }
+  }, 
+  "tags": [
+    "web", 
+    "htaccess", 
+    "server", 
+    "limit"
+  ], 
+  "references": [
+    {
+      "url": "http://httpd.apache.org/docs/2.2/mod/core.html#limit", 
+      "title": "Apache.org"
+    }
+  ]
+}

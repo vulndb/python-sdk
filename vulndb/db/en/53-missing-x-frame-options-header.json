@@ -1,0 +1,28 @@
+{
+  "id": 53, 
+  "title": "Missing 'X-Frame-Options' header", 
+  "severity": "low", 
+  "description": {
+    "$ref": "#/files/description/53"
+  }, 
+  "fix": {
+    "effort": 50, 
+    "guidance": {
+      "$ref": "#/files/fix/17"
+    }
+  }, 
+  "references": [
+    {
+      "url": "http://tools.ietf.org/html/rfc7034", 
+      "title": "RFC-7034"
+    }, 
+    {
+      "url": "https://developer.mozilla.org/en-US/docs/Web/HTTP/X-Frame-Options", 
+      "title": "Mozilla developer network"
+    }, 
+    {
+      "url": "https://www.owasp.org/index.php/Clickjacking", 
+      "title": "OWASP Clickjacking document"
+    }
+  ]
+}

@@ -1,0 +1,42 @@
+{
+  "id": 13, 
+  "title": "Cross-Site Request Forgery", 
+  "severity": "high", 
+  "description": {
+    "$ref": "#/files/description/13"
+  }, 
+  "fix": {
+    "effort": 50, 
+    "guidance": {
+      "$ref": "#/files/fix/44"
+    }
+  }, 
+  "cwe": [
+    "352"
+  ], 
+  "owasp_top_10": {
+    "2013": [
+      8
+    ]
+  }, 
+  "tags": [
+    "web", 
+    "csrf", 
+    "form", 
+    "token"
+  ], 
+  "references": [
+    {
+      "url": "http://www.cgisecurity.com/csrf-faq.html", 
+      "title": "CGI Security - CSRF"
+    }, 
+    {
+      "url": "http://en.wikipedia.org/wiki/Cross-site_request_forgery", 
+      "title": "Wikipedia - CSRF"
+    }, 
+    {
+      "url": "https://www.owasp.org/index.php/Cross-Site_Request_Forgery_(CSRF)", 
+      "title": "OWASP - CSRF"
+    }
+  ]
+}

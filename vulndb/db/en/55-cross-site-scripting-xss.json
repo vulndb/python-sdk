@@ -1,0 +1,42 @@
+{
+  "id": 55, 
+  "title": "Reflected Cross-Site Scripting (XSS)", 
+  "severity": "high", 
+  "description": {
+    "$ref": "#/files/description/55"
+  }, 
+  "fix": {
+    "effort": 10, 
+    "guidance": {
+      "$ref": "#/files/fix/20"
+    }
+  }, 
+  "cwe": [
+    "79"
+  ], 
+  "owasp_top_10": {
+    "2013": [
+      3
+    ]
+  }, 
+  "tags": [
+    "web", 
+    "xss", 
+    "injection", 
+    "script"
+  ], 
+  "references": [
+    {
+      "url": "http://projects.webappsec.org/w/page/13246920/Cross%20Site%20Scripting", 
+      "title": "WASC"
+    }, 
+    {
+      "url": "http://secunia.com/advisories/9716/", 
+      "title": "Secunia"
+    }, 
+    {
+      "url": "https://www.owasp.org/index.php/XSS_%28Cross_Site_Scripting%29_Prevention_Cheat_Sheet", 
+      "title": "OWASP"
+    }
+  ]
+}

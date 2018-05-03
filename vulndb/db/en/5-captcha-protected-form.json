@@ -1,0 +1,14 @@
+{
+  "id": 5, 
+  "title": "CAPTCHA protected form", 
+  "severity": "informational", 
+  "description": {
+    "$ref": "#/files/description/5"
+  }, 
+  "fix": {
+    "effort": 50, 
+    "guidance": {
+      "$ref": "#/files/fix/37"
+    }
+  }
+}

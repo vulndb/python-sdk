@@ -1,0 +1,27 @@
+{
+  "id": 24, 
+  "title": "Insecure client-access policy", 
+  "severity": "low", 
+  "description": {
+    "$ref": "#/files/description/24"
+  }, 
+  "fix": {
+    "effort": 50, 
+    "guidance": {
+      "$ref": "#/files/fix/36"
+    }
+  }, 
+  "cwe": [
+    "346"
+  ], 
+  "references": [
+    {
+      "url": "https://msdn.microsoft.com/en-us/library/cc197955%28v=vs.95%29.aspx", 
+      "title": "MSDN"
+    }, 
+    {
+      "url": "https://www.owasp.org/index.php/Test_Cross_Origin_Resource_Sharing_%28OTG-CLIENT-007%29", 
+      "title": "OWASP"
+    }
+  ]
+}

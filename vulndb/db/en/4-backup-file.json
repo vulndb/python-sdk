@@ -1,0 +1,35 @@
+{
+  "id": 4, 
+  "title": "Backup file", 
+  "severity": "medium", 
+  "description": {
+    "$ref": "#/files/description/4"
+  }, 
+  "fix": {
+    "effort": 50, 
+    "guidance": {
+      "$ref": "#/files/fix/21"
+    }
+  }, 
+  "cwe": [
+    "530"
+  ], 
+  "owasp_top_10": {
+    "2013": [
+      5
+    ]
+  }, 
+  "tags": [
+    "web", 
+    "path", 
+    "backup", 
+    "file", 
+    "discovery"
+  ], 
+  "references": [
+    {
+      "url": "http://www.webappsec.org/projects/threat/classes/information_leakage.shtml", 
+      "title": "WebAppSec"
+    }
+  ]
+}

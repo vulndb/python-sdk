@@ -1,0 +1,28 @@
+{
+  "id": 64, 
+  "title": "XML External Entity", 
+  "severity": "high", 
+  "description": {
+    "$ref": "#/files/description/64"
+  }, 
+  "fix": {
+    "effort": 50, 
+    "guidance": {
+      "$ref": "#/files/fix/43"
+    }
+  }, 
+  "cwe": [
+    "611"
+  ], 
+  "owasp_top_10": {
+    "2013": [
+      1
+    ]
+  }, 
+  "references": [
+    {
+      "url": "https://www.owasp.org/index.php/XML_External_Entity_%28XXE%29_Processing", 
+      "title": "OWASP"
+    }
+  ]
+}

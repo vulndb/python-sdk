@@ -1,0 +1,35 @@
+{
+  "id": 33, 
+  "title": "NoSQL Injection", 
+  "severity": "high", 
+  "description": {
+    "$ref": "#/files/description/33"
+  }, 
+  "fix": {
+    "effort": 50, 
+    "guidance": {
+      "$ref": "#/files/fix/6"
+    }
+  }, 
+  "cwe": [
+    "89"
+  ], 
+  "owasp_top_10": {
+    "2013": [
+      1
+    ]
+  }, 
+  "tags": [
+    "web", 
+    "nosql", 
+    "injection", 
+    "database", 
+    "error"
+  ], 
+  "references": [
+    {
+      "url": "https://www.owasp.org/index.php/Testing_for_NoSQL_injection", 
+      "title": "OWASP"
+    }
+  ]
+}

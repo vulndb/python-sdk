@@ -1,0 +1,38 @@
+{
+  "id": 39, 
+  "title": "Path Traversal", 
+  "severity": "high", 
+  "description": {
+    "$ref": "#/files/description/39"
+  }, 
+  "fix": {
+    "effort": 50, 
+    "guidance": {
+      "$ref": "#/files/fix/13"
+    }
+  }, 
+  "cwe": [
+    "22"
+  ], 
+  "owasp_top_10": {
+    "2013": [
+      4
+    ]
+  }, 
+  "tags": [
+    "web", 
+    "path", 
+    "traversal", 
+    "injection"
+  ], 
+  "references": [
+    {
+      "url": "http://projects.webappsec.org/Path-Traversal", 
+      "title": "WASC"
+    }, 
+    {
+      "url": "https://www.owasp.org/index.php/Path_Traversal", 
+      "title": "OWASP"
+    }
+  ]
+}

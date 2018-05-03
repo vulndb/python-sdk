@@ -1,0 +1,39 @@
+{
+  "id": 41, 
+  "title": "Response Splitting", 
+  "severity": "medium", 
+  "description": {
+    "$ref": "#/files/description/41"
+  }, 
+  "fix": {
+    "effort": 50, 
+    "guidance": {
+      "$ref": "#/files/fix/11"
+    }
+  }, 
+  "tags": [
+    "web", 
+    "response", 
+    "splitting", 
+    "injection", 
+    "header"
+  ], 
+  "cwe": [
+    "98"
+  ], 
+  "owasp_top_10": {
+    "2013": [
+      1
+    ]
+  }, 
+  "references": [
+    {
+      "url": "http://www.securiteam.com/securityreviews/5WP0E2KFGK.html", 
+      "title": "SecuriTeam"
+    }, 
+    {
+      "url": "https://www.owasp.org/index.php/HTTP_Response_Splitting", 
+      "title": "OWASP"
+    }
+  ]
+}

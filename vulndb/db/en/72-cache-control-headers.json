@@ -1,0 +1,35 @@
+{
+  "id": 72, 
+  "title": "Insecure or no Cache-Control header", 
+  "severity": "low", 
+  "description": {
+    "$ref": "#/files/description/72"
+  }, 
+  "fix": {
+    "effort": 10, 
+    "guidance": {
+      "$ref": "#/files/fix/50"
+    }
+  }, 
+  "cwe": [
+    "524", 
+    "525"
+  ], 
+  "owasp_top_10": {
+    "2013": [
+      5
+    ]
+  }, 
+  "tags": [
+    "web", 
+    "browser", 
+    "cache", 
+    "session"
+  ], 
+  "references": [
+    {
+      "url": "https://www.owasp.org/index.php/Session_Management_Cheat_Sheet#Web_Content_Caching", 
+      "title": "Session Management Cheat Sheet"
+    }
+  ]
+}

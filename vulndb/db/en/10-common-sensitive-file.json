@@ -1,0 +1,27 @@
+{
+  "id": 10, 
+  "title": "Common sensitive file", 
+  "severity": "low", 
+  "description": {
+    "$ref": "#/files/description/10"
+  }, 
+  "fix": {
+    "effort": 50, 
+    "guidance": {
+      "$ref": "#/files/fix/10"
+    }
+  }, 
+  "tags": [
+    "web", 
+    "common", 
+    "path", 
+    "file", 
+    "discovery"
+  ], 
+  "references": [
+    {
+      "url": "http://httpd.apache.org/docs/2.0/mod/mod_access.html", 
+      "title": "Apache.org"
+    }
+  ]
+}

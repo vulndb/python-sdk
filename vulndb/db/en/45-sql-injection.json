@@ -1,0 +1,55 @@
+{
+  "id": 45, 
+  "title": "SQL Injection", 
+  "severity": "high", 
+  "description": {
+    "$ref": "#/files/description/45"
+  }, 
+  "fix": {
+    "effort": 50, 
+    "guidance": {
+      "$ref": "#/files/fix/1"
+    }
+  }, 
+  "cwe": [
+    "89"
+  ], 
+  "owasp_top_10": {
+    "2013": [
+      1
+    ]
+  }, 
+  "tags": [
+    "web", 
+    "sql", 
+    "injection", 
+    "database", 
+    "error"
+  ], 
+  "references": [
+    {
+      "url": "http://www.securiteam.com/securityreviews/5DP0N1P76E.html", 
+      "title": "SecuriTeam"
+    }, 
+    {
+      "url": "http://en.wikipedia.org/wiki/SQL_injection", 
+      "title": "Wikipedia"
+    }, 
+    {
+      "url": "https://www.owasp.org/index.php/SQL_Injection", 
+      "title": "OWASP"
+    }, 
+    {
+      "url": "http://projects.webappsec.org/w/page/13246963/SQL%20Injection", 
+      "title": "WASC"
+    }, 
+    {
+      "url": "http://www.w3schools.com/sql/sql_injection.asp", 
+      "title": "W3 Schools"
+    }, 
+    {
+      "url": "http://unixwiz.net/techtips/sql-injection.html", 
+      "title": "UnixWiz"
+    }
+  ]
+}

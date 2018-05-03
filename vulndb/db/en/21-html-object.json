@@ -1,0 +1,14 @@
+{
+  "id": 21, 
+  "title": "HTML object", 
+  "severity": "informational", 
+  "description": {
+    "$ref": "#/files/description/21"
+  }, 
+  "fix": {
+    "effort": 120, 
+    "guidance": {
+      "$ref": "#/files/fix/16"
+    }
+  }
+}

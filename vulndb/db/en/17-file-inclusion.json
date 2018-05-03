@@ -1,0 +1,35 @@
+{
+  "id": 17, 
+  "title": "File Inclusion", 
+  "severity": "high", 
+  "description": {
+    "$ref": "#/files/description/17"
+  }, 
+  "fix": {
+    "effort": 50, 
+    "guidance": {
+      "$ref": "#/files/fix/13"
+    }
+  }, 
+  "cwe": [
+    "98"
+  ], 
+  "owasp_top_10": {
+    "2013": [
+      1
+    ]
+  }, 
+  "tags": [
+    "web", 
+    "file", 
+    "inclusion", 
+    "error", 
+    "injection"
+  ], 
+  "references": [
+    {
+      "url": "https://www.owasp.org/index.php/PHP_File_Inclusion", 
+      "title": "OWASP"
+    }
+  ]
+}

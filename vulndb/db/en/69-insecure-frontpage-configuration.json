@@ -1,0 +1,30 @@
+{
+  "id": 69, 
+  "title": "Insecure Frontpage extensions configuration", 
+  "severity": "high", 
+  "description": {
+    "$ref": "#/files/description/69"
+  }, 
+  "fix": {
+    "effort": 10, 
+    "guidance": {
+      "$ref": "#/files/fix/31"
+    }
+  }, 
+  "tags": [
+    "web", 
+    "windows", 
+    "frontpage"
+  ], 
+  "owasp_top_10": {
+    "2013": [
+      5
+    ]
+  }, 
+  "references": [
+    {
+      "url": "https://msdn.microsoft.com/en-us/library/bb742372.aspx", 
+      "title": "Configuring FrontPage Server Extensions"
+    }
+  ]
+}

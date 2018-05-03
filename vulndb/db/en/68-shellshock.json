@@ -1,0 +1,29 @@
+{
+  "id": 68, 
+  "title": "ShellShock", 
+  "severity": "high", 
+  "description": {
+    "$ref": "#/files/description/68"
+  }, 
+  "fix": {
+    "effort": 60, 
+    "guidance": {
+      "$ref": "#/files/fix/33"
+    }
+  }, 
+  "tags": [
+    "web", 
+    "bash", 
+    "shellshock"
+  ], 
+  "references": [
+    {
+      "url": "https://web.nvd.nist.gov/view/vuln/detail?vulnId=CVE-2014-6271", 
+      "title": "CVE-2014-6271"
+    }, 
+    {
+      "url": "https://en.wikipedia.org/wiki/Shellshock_%28software_bug%29", 
+      "title": "Wikipedia article for Shellshock"
+    }
+  ]
+}

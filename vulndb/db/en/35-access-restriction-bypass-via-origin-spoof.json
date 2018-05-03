@@ -1,0 +1,21 @@
+{
+  "id": 35, 
+  "title": "Access restriction bypass via origin spoof", 
+  "severity": "high", 
+  "description": {
+    "$ref": "#/files/description/35"
+  }, 
+  "fix": {
+    "effort": 50, 
+    "guidance": {
+      "$ref": "#/files/fix/46"
+    }
+  }, 
+  "tags": [
+    "web", 
+    "access", 
+    "restriction", 
+    "server", 
+    "bypass"
+  ]
+}

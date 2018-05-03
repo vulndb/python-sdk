@@ -1,0 +1,43 @@
+{
+  "id": 56, 
+  "title": "DOM-based Cross-Site Scripting (XSS)", 
+  "severity": "high", 
+  "description": {
+    "$ref": "#/files/description/56"
+  }, 
+  "fix": {
+    "effort": 50, 
+    "guidance": {
+      "$ref": "#/files/fix/9"
+    }
+  }, 
+  "cwe": [
+    "79"
+  ], 
+  "owasp_top_10": {
+    "2013": [
+      3
+    ]
+  }, 
+  "tags": [
+    "web", 
+    "xss", 
+    "dom", 
+    "injection", 
+    "script"
+  ], 
+  "references": [
+    {
+      "url": "http://projects.webappsec.org/w/page/13246920/Cross%20Site%20Scripting", 
+      "title": "WASC"
+    }, 
+    {
+      "url": "https://www.owasp.org/index.php/DOM_based_XSS_Prevention_Cheat_Sheet", 
+      "title": "OWASP - Prevention"
+    }, 
+    {
+      "url": "https://www.owasp.org/index.php/DOM_Based_XSS", 
+      "title": "OWASP"
+    }
+  ]
+}

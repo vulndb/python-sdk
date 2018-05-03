@@ -1,0 +1,39 @@
+{
+  "id": 42, 
+  "title": "Remote File Inclusion", 
+  "severity": "high", 
+  "description": {
+    "$ref": "#/files/description/42"
+  }, 
+  "fix": {
+    "effort": 50, 
+    "guidance": {
+      "$ref": "#/files/fix/13"
+    }
+  }, 
+  "cwe": [
+    "98"
+  ], 
+  "owasp_top_10": {
+    "2013": [
+      1
+    ]
+  }, 
+  "tags": [
+    "web", 
+    "remote", 
+    "file", 
+    "inclusion", 
+    "injection"
+  ], 
+  "references": [
+    {
+      "url": "http://projects.webappsec.org/Remote-File-Inclusion", 
+      "title": "WASC"
+    }, 
+    {
+      "url": "http://en.wikipedia.org/wiki/Remote_File_Inclusion", 
+      "title": "Wikipedia"
+    }
+  ]
+}

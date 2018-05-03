@@ -1,0 +1,36 @@
+{
+  "id": 50, 
+  "title": "Unvalidated redirect", 
+  "severity": "medium", 
+  "description": {
+    "$ref": "#/files/description/50"
+  }, 
+  "fix": {
+    "effort": 50, 
+    "guidance": {
+      "$ref": "#/files/fix/29"
+    }
+  }, 
+  "cwe": [
+    "601"
+  ], 
+  "owasp_top_10": {
+    "2013": [
+      10
+    ]
+  }, 
+  "tags": [
+    "web", 
+    "unvalidated", 
+    "redirect", 
+    "injection", 
+    "header", 
+    "location"
+  ], 
+  "references": [
+    {
+      "url": "https://www.owasp.org/index.php/Top_10_2010-A10-Unvalidated_Redirects_and_Forwards", 
+      "title": "OWASP Top 10 2010"
+    }
+  ]
+}

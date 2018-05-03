@@ -1,0 +1,23 @@
+{
+  "id": 48, 
+  "title": "Disclosed US Social Security Number (SSN)", 
+  "severity": "high", 
+  "description": {
+    "$ref": "#/files/description/48"
+  }, 
+  "fix": {
+    "effort": 50, 
+    "guidance": {
+      "$ref": "#/files/fix/28"
+    }
+  }, 
+  "cwe": [
+    "213"
+  ], 
+  "references": [
+    {
+      "url": "http://www.ssa.gov/pubs/10064.html", 
+      "title": "ssa.gov"
+    }
+  ]
+}
