@@ -24,4 +24,4 @@ jobs:
       - run:
           command: |
             /home/circleci/.local/bin/nosetests -s -v vulndb/
-            pylint --msg-template='{msg_id}:{line:3d},{column}: {obj}: {msg}' -E vulndb/ setup.py
+            /home/circleci/.local/bin/pylint --msg-template='{msg_id}:{line:3d},{column}: {obj}: {msg}' -E vulndb/ setup.py
