@@ -41,7 +41,6 @@ class TestLoadAllJSON(unittest.TestCase):
                 self.assertIsInstance(dbv.tags, (types.NoneType, list))
                 self.assertIsInstance(dbv.cwe, (types.NoneType, list))
                 self.assertIsInstance(dbv.owasp_top_10, (types.NoneType, dict))
-                self.assertIsInstance(dbv.fix, dict)
                 self.assertIsInstance(dbv.fix_effort, int)
                 self.assertIsInstance(dbv.fix_guidance, basestring)
 

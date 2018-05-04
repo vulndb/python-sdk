@@ -1,0 +1,25 @@
+{
+  "id": 123,
+  "title": "Cross-Site Scripting en ES",
+  "description": {
+    "$ref": "#/files/description/1"
+  },
+  "severity": "medium",
+  "wasc": ["0003"],
+  "tags": ["xss", "client side"],
+  "cwe": ["0003", "0007"],
+  "owasp_top_10": {
+        "2010": [1],
+        "2013": [2]
+  },
+  "fix": {
+      "guidance": {
+        "$ref": "#/files/fix/39"
+      },
+      "effort": 50
+    },
+  "references": [
+      {"url": "http://foo.es/xss", "title": "Primera referencia a una vulnerabilidad de XSS"},
+      {"url": "http://asp.net/xss", "title": "Como arreglar XSS en .NET"}
+    ]
+}

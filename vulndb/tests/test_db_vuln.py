@@ -12,8 +12,8 @@ MOCK_WASC = ['2']
 MOCK_TAGS = ['hello', 'world']
 MOCK_CWE = ['89']
 MOCK_OWASP_TOP_10 = {"2010": [1], "2013": [2]}
-MOCK_FIX = {"guidance": "A very long text explaining how to fix...",
-            "effort": 50}
+MOCK_FIX_EFFORT = 50
+MOCK_FIX_GUIDANCE = "A very long text explaining how to fix..."
 MOCK_DB_FILE = 'path/to/file.json'
 MOCK_REFERENCES = [{"url": "http://foo.com/xss",
                     "title": "First reference to XSS vulnerability"},
@@ -31,7 +31,8 @@ class TestDBVuln(unittest.TestCase):
             'tags': MOCK_TAGS,
             'cwe': MOCK_CWE,
             'owasp_top_10': MOCK_OWASP_TOP_10,
-            'fix': MOCK_FIX,
+            'fix_effort': MOCK_FIX_EFFORT,
+            'fix_guidance': MOCK_FIX_GUIDANCE,
             'references': MOCK_REFERENCES,
             'db_file': MOCK_DB_FILE
         }
@@ -56,12 +57,13 @@ class TestDBVuln(unittest.TestCase):
         self.assertEqual(dbv.tags, MOCK_TAGS)
         self.assertEqual(dbv.cwe, MOCK_CWE)
         self.assertEqual(dbv.owasp_top_10, MOCK_OWASP_TOP_10)
-        self.assertEqual(dbv.fix, MOCK_FIX)
+        self.assertEqual(dbv.fix_effort, MOCK_FIX_EFFORT)
+        self.assertEqual(dbv.fix_guidance, MOCK_FIX_GUIDANCE)
         self.assertEqual(dbv.references, MOCK_REFERENCES)
         self.assertEqual(dbv.db_file, MOCK_DB_FILE)
 
     def test_from_file(self):
-        _file = os.path.join(DBVuln.DB_PATH, DBVuln.LANG, '123-spec-example.json')
+        _file = os.path.join(DBVuln.DB_PATH, DBVuln.DEFAULT_LANG, '123-spec-example.json')
 
         dbv_1 = DBVuln.from_file(_file)
         dbv_2 = DBVuln.from_id(123)
@@ -72,7 +74,7 @@ class TestDBVuln(unittest.TestCase):
     def test_from_id(self):
         dbv = DBVuln.from_id(123)
 
-        _file = os.path.join(DBVuln.DB_PATH, DBVuln.LANG, '123-spec-example.json')
+        _file = os.path.join(DBVuln.DB_PATH, DBVuln.DEFAULT_LANG, '123-spec-example.json')
         self.assertEqual(dbv.db_file, _file)
 
         expected_references = [Reference("http://foo.com/xss",
@@ -89,8 +91,6 @@ class TestDBVuln(unittest.TestCase):
         self.assertEqual(dbv.tags, [u'xss', u'client side'])
         self.assertEqual(dbv.cwe, [u'0003', u'0007'])
         self.assertEqual(dbv.owasp_top_10, {"2010": [1], "2013": [2]},)
-        self.assertEqual(dbv.fix, {u"guidance": {u'$ref': u'#/files/fix/39'},
-                                   u"effort": 50})
         self.assertEqual(dbv.references, expected_references)
         self.assertEqual(dbv.fix_effort, 50)
         self.assertEqual(dbv.fix_guidance, u'A very long text explaining how developers'
@@ -115,3 +115,33 @@ class TestDBVuln(unittest.TestCase):
                          'https://www.owasp.org/index.php/Top_10_2013-A2')
 
         self.assertEqual(dbv.get_owasp_top_10_url(2033, 2), None)
+
+    def test_load_es_lang(self):
+        language = 'es'
+        _file = os.path.join(DBVuln.DB_PATH, language, '123-spec-example.json')
+
+        dbv_1 = DBVuln.from_file(_file, language=language)
+        dbv_2 = DBVuln.from_id(123, language=language)
+
+        self.assertEqual(dbv_1, dbv_2)
+        self.assertEqual(dbv_1.db_file, _file)
+
+        dbv = dbv_1
+
+        expected_references = [Reference("http://foo.es/xss",
+                                         "Primera referencia a una vulnerabilidad de XSS"),
+                               Reference("http://asp.net/xss",
+                                         "Como arreglar XSS en .NET")]
+
+        self.assertEqual(dbv.title, u'Cross-Site Scripting en ES')
+        self.assertEqual(dbv.description, u'Un texto largo donde se explica que es un XSS')
+        self.assertEqual(dbv.id, MOCK_ID)
+        self.assertEqual(dbv.severity, MOCK_SEVERITY)
+        self.assertEqual(dbv.wasc, [u'0003'])
+        self.assertEqual(dbv.tags, [u'xss', u'client side'])
+        self.assertEqual(dbv.cwe, [u'0003', u'0007'])
+        self.assertEqual(dbv.owasp_top_10, {"2010": [1], "2013": [2]},)
+        self.assertEqual(dbv.references, expected_references)
+        self.assertEqual(dbv.fix_effort, 50)
+        self.assertEqual(dbv.fix_guidance, u'Y otro texto largo donde se explica como'
+                                           u' arreglar vulnerabilidades de XSS')

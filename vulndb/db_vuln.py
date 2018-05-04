@@ -16,11 +16,12 @@ class DBVuln(object):
     """
     DB_PATH = os.path.join(os.path.dirname(os.path.realpath(__file__)), 'db')
     DB_VERSION_FILE = 'db-version.txt'
-    LANG = 'en'
+    DEFAULT_LANG = 'en'
 
     def __init__(self, _id=None, title=None, description=None, severity=None,
-                 wasc=None, tags=None, cwe=None, owasp_top_10=None, fix=None,
-                 references=None, db_file=None):
+                 wasc=None, tags=None, cwe=None, owasp_top_10=None,
+                 fix_guidance=None, fix_effort=None, references=None,
+                 db_file=None):
         """
         Creates a new DBVuln, setting the internal attributes to the provided
         kwargs.
@@ -33,21 +34,34 @@ class DBVuln(object):
         self.tags = tags
         self.cwe = cwe
         self.owasp_top_10 = owasp_top_10
-        self.fix = fix
+        self.fix_guidance = fix_guidance
+        self.fix_effort = fix_effort
         self.references = references
         self.db_file = db_file
 
     @staticmethod
-    def get_json_path():
-        return os.path.join(DBVuln.DB_PATH, DBVuln.LANG)
+    def get_json_path(language=DEFAULT_LANG):
+        """
+        :param language: The user's language (en, es, etc.)
+        :return: The path where the json files are located
+        """
+        return os.path.join(DBVuln.DB_PATH, language)
 
     @staticmethod
-    def get_description_path():
-        return os.path.join(DBVuln.DB_PATH, DBVuln.LANG, 'description')
+    def get_description_path(language=DEFAULT_LANG):
+        """
+        :param language: The user's language (en, es, etc.)
+        :return: The path where the description markdown files are located
+        """
+        return os.path.join(DBVuln.DB_PATH, language, 'description')
 
     @staticmethod
-    def get_fix_path():
-        return os.path.join(DBVuln.DB_PATH, DBVuln.LANG, 'fix')
+    def get_fix_path(language=DEFAULT_LANG):
+        """
+        :param language: The user's language (en, es, etc.)
+        :return: The path where the fix markdown files are located
+        """
+        return os.path.join(DBVuln.DB_PATH, language, 'fix')
 
     @staticmethod
     def get_all_languages():
@@ -60,22 +74,25 @@ class DBVuln(object):
         return file(db_version).read().strip()
 
     @classmethod
-    def from_file(cls, db_file):
+    def from_file(cls, db_file, language=DEFAULT_LANG):
         """
         This is an alternative "constructor" for the DBVuln class which loads
         the data from a file.
+
+        :param db_file: Contents of a json file from the DB
+        :param language: The user's language (en, es, etc.)
         """
-        data = DBVuln.load_from_json(db_file)
+        data = DBVuln.load_from_json(db_file, language=language)
         return cls(**data)
 
     @classmethod
-    def from_id(cls, _id):
+    def from_id(cls, _id, language=DEFAULT_LANG):
         """
         This is an alternative "constructor" for the DBVuln class which searches
         the db directory to find the right file for the provided _id
         """
-        db_file = DBVuln.get_file_for_id(_id)
-        data = DBVuln.load_from_json(db_file)
+        db_file = DBVuln.get_file_for_id(_id, language=language)
+        data = DBVuln.load_from_json(db_file, language=language)
         return cls(**data)
 
     def get_owasp_top_10_references(self):
@@ -85,62 +102,45 @@ class DBVuln(object):
                 if ref is not None:
                     yield owasp_version, risk_id, ref
 
-    @property
-    def fix_guidance(self):
-        """
-        :return: The text associated with the fix guidance:
-
-            "fix": {
-                    "guidance": "A very long text explaining how to fix...",
-                    "effort": 50
-                    },
-        """
-        return self.handle_ref(self.fix['guidance'])
-
-    @property
-    def fix_effort(self):
-        """
-        :return: The effort (in minutes) associated with the fix
-
-            "fix": {
-                    "guidance": "A very long text explaining how to fix...",
-                    "effort": 50
-                    },
-        """
-        return self.fix['effort']
-
     @staticmethod
-    def get_file_for_id(_id):
+    def get_file_for_id(_id, language=DEFAULT_LANG):
         """
         Given _id, search the DB for the file which contains the data
+
         :param _id: The id to search (int)
+        :param language: The user's language (en, es, etc.)
         :return: The filename
         """
         file_start = '%s-' % _id
 
-        for _file in os.listdir(DBVuln.get_json_path()):
+        json_path = DBVuln.get_json_path(language=language)
+
+        for _file in os.listdir(json_path):
             if _file.startswith(file_start):
-                return os.path.join(DBVuln.get_json_path(), _file)
+                return os.path.join(json_path, _file)
 
         raise NotFoundException('No data for ID %s' % _id)
 
     @staticmethod
-    def get_all_db_ids():
+    def get_all_db_ids(language=DEFAULT_LANG):
         """
         :return: A list with all the database IDs as integers
         """
         _ids = []
+        json_path = DBVuln.get_json_path(language=language)
 
-        for _file in os.listdir(DBVuln.get_json_path()):
+        for _file in os.listdir(json_path):
+
             if not _file.endswith('.json'):
                 continue
+
             _id = _file.split('-')[0]
             _ids.append(_id)
 
         return _ids
 
     @staticmethod
-    def handle_ref(attr):
+    def handle_ref(attr, language=DEFAULT_LANG):
         """
         Receives something like:
 
@@ -157,6 +157,7 @@ class DBVuln(object):
         And returns the contents of the description or fix file.
 
         :param attr: A dict containing a reference
+        :param language: The user's language (en, es, etc.)
         :return: Markdown referenced by the attr
         """
         ref = attr.get('$ref', None)
@@ -174,7 +175,9 @@ class DBVuln(object):
         if not _id.isdigit():
             raise NotFoundException('Mandatory integer ID not found in $ref')
 
-        file_path = os.path.join(DBVuln.get_json_path(), _type, '%s.md' % _id)
+        file_path = os.path.join(DBVuln.get_json_path(language=language),
+                                 _type,
+                                 '%s.md' % _id)
 
         if not os.path.exists(file_path):
             raise NotFoundException('$ref points to a non existing file')
@@ -182,11 +185,12 @@ class DBVuln(object):
         return file(file_path).read()
 
     @staticmethod
-    def load_from_json(db_file):
+    def load_from_json(db_file, language=DEFAULT_LANG):
         """
         Parses the JSON data and returns it
 
         :param db_file: File and path pointing to the JSON file to parse
+        :param language: The user's language (en, es, etc.)
         :raises: All kind of exceptions if the file doesn't exist or JSON is
                  invalid.
         :return: None
@@ -201,13 +205,14 @@ class DBVuln(object):
         data = {
             '_id': raw['id'],
             'title': raw['title'],
-            'description': DBVuln.handle_ref(raw['description']),
+            'description': DBVuln.handle_ref(raw['description'], language=language),
             'severity': raw['severity'],
             'wasc': raw.get('wasc', []),
             'tags': raw.get('tags', []),
             'cwe': raw.get('cwe', []),
             'owasp_top_10': raw.get('owasp_top_10', {}),
-            'fix': raw['fix'],
+            'fix_effort': raw['fix']['effort'],
+            'fix_guidance': DBVuln.handle_ref(raw['fix']['guidance'], language=language),
             'references': DBVuln.handle_references(raw.get('references', [])),
             'db_file': db_file,
         }
@@ -269,9 +274,9 @@ class DBVuln(object):
         return reference_list
 
     @staticmethod
-    def is_valid_id(_id):
+    def is_valid_id(_id, language=DEFAULT_LANG):
         try:
-            DBVuln.get_file_for_id(_id)
+            DBVuln.get_file_for_id(_id, language=language)
         except NotFoundException:
             return False
         else:
@@ -293,7 +298,8 @@ class DBVuln(object):
                 self.tags == other.tags and
                 self.cwe == other.cwe and
                 self.owasp_top_10 == other.owasp_top_10 and
-                self.fix == other.fix and
+                self.fix_effort == other.fix_effort and
+                self.fix_guidance == other.fix_guidance and
                 self.references == other.references)
 
 
