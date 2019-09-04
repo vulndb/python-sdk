@@ -1,3 +1,4 @@
+from past.builtins import basestring
 import unittest
 import types
 import os
@@ -37,10 +38,10 @@ class TestLoadAllJSON(unittest.TestCase):
                 self.assertIsInstance(dbv.description, basestring)
                 self.assertIsInstance(dbv.id, int)
                 self.assertIsInstance(dbv.severity, basestring)
-                self.assertIsInstance(dbv.wasc, (types.NoneType, list))
-                self.assertIsInstance(dbv.tags, (types.NoneType, list))
-                self.assertIsInstance(dbv.cwe, (types.NoneType, list))
-                self.assertIsInstance(dbv.owasp_top_10, (types.NoneType, dict))
+                self.assertIsInstance(dbv.wasc, (type(None), list))
+                self.assertIsInstance(dbv.tags, (type(None), list))
+                self.assertIsInstance(dbv.cwe, (type(None), list))
+                self.assertIsInstance(dbv.owasp_top_10, (type(None), dict))
                 self.assertIsInstance(dbv.fix_effort, int)
                 self.assertIsInstance(dbv.fix_guidance, basestring)
 
