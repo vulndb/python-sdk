@@ -13,6 +13,7 @@ setup(
 
     description='Provides access to the vulndb information',
     long_description=open(join(dirname(__file__), 'README.rst')).read(),
+    long_description_content_type='text/x-rst',
 
     author='Andres Riancho',
     author_email='self@andresriancho.com',
