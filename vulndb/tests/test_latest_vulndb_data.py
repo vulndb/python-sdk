@@ -11,9 +11,13 @@ LATEST_COMMIT = 'git rev-parse HEAD'
 class TestLatestDBUsed(unittest.TestCase):
     def test_latest_db_used(self):
         subprocess.check_output('git clone %s' % VULNDB_DATA,
-                                shell=True, cwd='/tmp/')
+                                shell=True,
+                                cwd='/tmp/',
+                                stderr=subprocess.PIPE)
+
         latest_commit = subprocess.check_output(LATEST_COMMIT,
-                                                shell=True, cwd='/tmp/data/')
+                                                shell=True,
+                                                cwd='/tmp/data/')
 
         shutil.rmtree('/tmp/data/')
 
