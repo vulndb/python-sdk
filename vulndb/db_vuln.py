@@ -1,3 +1,4 @@
+from builtins import object
 import os
 import json
 
@@ -71,7 +72,7 @@ class DBVuln(object):
     def get_db_version():
         db_version = os.path.join(os.path.dirname(os.path.realpath(__file__)),
                                   DBVuln.DB_VERSION_FILE)
-        return file(db_version).read().strip()
+        return open(db_version).read().strip()
 
     @classmethod
     def from_file(cls, db_file, language=DEFAULT_LANG):
@@ -182,7 +183,7 @@ class DBVuln(object):
         if not os.path.exists(file_path):
             raise NotFoundException('$ref points to a non existing file')
 
-        return file(file_path).read()
+        return open(file_path).read()
 
     @staticmethod
     def load_from_json(db_file, language=DEFAULT_LANG):
@@ -198,7 +199,7 @@ class DBVuln(object):
         # There are a couple of things I don't do here, and are on purpose:
         #   - I want to fail if the file doesn't exist
         #   - I want to fail if the file doesn't contain valid JSON
-        raw = json.loads(file(db_file).read())
+        raw = json.loads(open(db_file).read())
 
         # Here I don't do any error handling either, I expect the JSON files to
         # be valid

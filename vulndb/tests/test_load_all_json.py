@@ -1,3 +1,4 @@
+from past.builtins import basestring
 import unittest
 import types
 import os

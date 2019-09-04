@@ -18,6 +18,7 @@ class TestLatestDBUsed(unittest.TestCase):
         latest_commit = subprocess.check_output(LATEST_COMMIT,
                                                 shell=True,
                                                 cwd='/tmp/data/')
+        latest_commit = latest_commit.decode('utf-8') 
 
         shutil.rmtree('/tmp/data/')
 
