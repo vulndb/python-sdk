@@ -10,7 +10,9 @@ class TestDataIsInstalled(unittest.TestCase):
         # and db files from this directory (because of python's PATH)
         subprocess.check_output(self.TEST_CMD, shell=True)
 
-        subprocess.check_output('python setup.py install --user', shell=True)
+        # Install
+        subprocess.check_output('python setup.py install', shell=True)
+
         # Now we run it in /tmp , where there is no vulndb in current PATH
         # so it will try to find it inside the site-packages
         subprocess.check_output(self.TEST_CMD, shell=True, cwd='/tmp/')

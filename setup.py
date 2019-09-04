@@ -25,7 +25,8 @@ setup(
 
     # With setuptools_git we make sure that the contents of vulndb/db/ , which
     # are non source code files, get copied too
-    setup_requires=['setuptools_git >= 1.1'],
+    setup_requires=['setuptools_git >= 1.1',
+                    'future'],
     zip_safe=False,
 
     # https://pypi.python.org/pypi?%3Aaction=list_classifiers
@@ -38,6 +39,7 @@ setup(
         'Operating System :: Microsoft :: Windows',
         'Programming Language :: Python',
         'Programming Language :: Python :: 2.7',
+        'Programming Language :: Python :: 3',
         'Topic :: Security'
     ],
 )
