@@ -80,6 +80,9 @@ After updating the database it's a good idea to publish the latest at ``pypi`` u
 
 ::
 
-    python setup.py sdist upload
+    rm -rf dist/
+    python setup.py sdist bdist_wheel
+    twine check dist/*
+    twine upload dist/*
 
 
